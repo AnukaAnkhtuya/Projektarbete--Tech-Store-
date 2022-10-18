@@ -33,14 +33,25 @@ header{
 
 .user, 
 .cart{
-    padding: 4px;
+    padding: 5px;
     font-size: 1.125rem;
+    cursor: pointer;
+}
+
+.user:hover, 
+.cart:hover {
+    transform: scale(0.97);
+
 }
 
 .navLeft{
-    color: var(--clr-light);
     font-family: var(--ff-primary);
     padding: 1rem;
+}
+
+.navLeft a{
+    text-decoration: none;
+    color: var(--clr-light);
 }
 
 .cartItems{
@@ -57,3 +68,20 @@ header{
     font-size: 0.75rem;
     font-weight: bold;
 }
+
+#itemContainer {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background-color: var(--clr-light);
+}
+
+.itemCard {
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5vh;
+    width: 100%;
+    font-weight: bold; 
+   }
