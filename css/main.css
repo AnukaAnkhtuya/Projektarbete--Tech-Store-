@@ -68,20 +68,3 @@ header{
     font-size: 0.75rem;
     font-weight: bold;
 }
-
-#itemContainer {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    background-color: var(--clr-light);
-}
-
-.itemCard {
-    background-color: #FFFFFF;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 5vh;
-    width: 100%;
-    font-weight: bold; 
-   }
