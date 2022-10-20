@@ -1,13 +1,19 @@
 var listOfProducts;
 var inCart = [];
+
+var tempUserList;
+
 navRight = document.querySelector(".navRight");
 userBtn = document.querySelector(".user");
 
 square = document.querySelector(".square");
 btnCancel = document.querySelector(".btnCancelLogIn");
-inputUserName = document.querySelector(".userName");
-inputPassWord = document.querySelector(".userPassword");
-console.log(userBtn)
+inputUsername = document.querySelector(".userName");
+inputPassword = document.querySelector(".userPassword");
+logInBtn = document.querySelector(".btnLogIn"); 
+pWelcome = document.querySelector(".pWelcome");
+//console.log(logInBtn)
+
 /** Get products from the json file and store it in a gobal variable */
 function loadProducts() {
     fetch("./products.json")
@@ -20,6 +26,7 @@ function loadProducts() {
     });
 }
 function initSite() {
+    initDefaultUsers();
     loadProducts();
     let itemCart = localStorage.doList;
     if (itemCart) {
@@ -28,20 +35,6 @@ function initSite() {
    document.getElementById("itemCounter").innerHTML = inCart.length;
 }
 
-// === Script for login-form ===
-userBtn.addEventListener("click", (e) => {
-    if(square.style.display === "none"){
-        square.style.display="block";
-    } else {
-        square.style.display="none";
-    }    
-    });
-btnCancel.addEventListener("click", (e) => {
-    square.style.display="none";
-    inputUserName.value = "";
-    inputPassWord.value = "";
-});
-// == END == Script for login-form == END ==
 
 /** Uses the loaded products data to create a visible product list on the website */
 function addProductsToWebpage() {
@@ -107,4 +100,70 @@ function addToCart(title) {
 
 function counter() {
     document.getElementById("itemCounter").innerHTML = inCart.length;
+}
+
+// === Script for showing login-form ===
+userBtn.addEventListener("click", (e) => {
+    if(square.style.display === "none"){
+        square.style.display="block";
+        login();
+    } else {
+        square.style.display="none";
+    }    
+    });
+// == END == Script for login-form == END ==
+btnCancel.addEventListener("click", (e) => {
+    square.style.display="none";
+    inputUsername.value = "";
+    inputPassword.value = "";
+});
+
+function initDefaultUsers(){
+    defUserList = [
+        {
+            userName: "Fredrik",
+            password: "12345"
+        },
+        {
+            userName: "Grupp2",
+            password: "555"
+        }
+];
+tempUserList = (localStorage.getItem("users", ));
+if(!tempUserList){
+    localStorage.setItem("users", JSON.stringify(defUserList)); //Ladda upp defUserList
+}
+tempUserList = JSON.parse(localStorage.getItem("users", )); //Ladda ner
+userList = tempUserList;
+};
+
+
+function login(){
+    logInBtn = document.querySelector(".btnLogIn"); 
+    logInBtn.addEventListener("click", function() {
+        let obj = userList.find(o => o.userName === inputUsername.value)
+            if(obj != undefined){
+                for (let x of userList) {
+                if(inputUsername.value === x.userName && inputPassword.value === x.password){
+                    logInUser(inputUsername.value);
+                return  
+                } 
+                };
+                console.log("Felaktigt användarnamn eller lösenord") ;
+                //felmeddelande("Felaktigt användarnamn eller lösenord. Försök igen.");
+            } else {
+                console.log("Användarnamnet finns inte");
+                //felmeddelande("Användarnamnet finns inte. Försök igen.")
+            }
+    });
+    //createAccountBtn = document.querySelector("#createAccountBtn");
+    //createAccountBtn.addEventListener("click", function() {
+    //    showCreateAccount()
+    //})
+};
+function logInUser(username){
+    square.display = "none";
+    localStorage.setItem("loggedInUser", username);
+    pWelcome.innerText="sdfklj";
+    //DÖLJ LOGINFÖNSTER. Fixa refresh. Ovan händer bara en gång. Lägga till i init? 
 }
