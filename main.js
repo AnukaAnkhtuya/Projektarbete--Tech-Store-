@@ -1,6 +1,13 @@
 var listOfProducts;
 var inCart = [];
+navRight = document.querySelector(".navRight");
+userBtn = document.querySelector(".user");
 
+square = document.querySelector(".square");
+btnCancel = document.querySelector(".btnCancelLogIn");
+inputUserName = document.querySelector(".userName");
+inputPassWord = document.querySelector(".userPassword");
+console.log(userBtn)
 /** Get products from the json file and store it in a gobal variable */
 function loadProducts() {
     fetch("./products.json")
@@ -12,10 +19,6 @@ function loadProducts() {
         addProductsToWebpage();
     });
 }
-
-
-
-
 function initSite() {
     loadProducts();
     let itemCart = localStorage.doList;
@@ -24,14 +27,8 @@ function initSite() {
     }
    document.getElementById("itemCounter").innerHTML = inCart.length;
 }
-// === Script for login-form ===
-let userBtn = document.querySelector(".user")
-let h1 = document.querySelector("h1")
-let square = document.querySelector(".square")
-let btnCancel = document.querySelector(".btnCancelLogIn")
-let inputUserName = document.querySelector(".userName")
-let inputPassWord = document.querySelector(".userPassword")
 
+// === Script for login-form ===
 userBtn.addEventListener("click", (e) => {
     if(square.style.display === "none"){
         square.style.display="block";
