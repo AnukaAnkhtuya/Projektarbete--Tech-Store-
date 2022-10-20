@@ -24,6 +24,27 @@ function initSite() {
     }
    document.getElementById("itemCounter").innerHTML = inCart.length;
 }
+// === Script for login-form ===
+let userBtn = document.querySelector(".user")
+let h1 = document.querySelector("h1")
+let square = document.querySelector(".square")
+let btnCancel = document.querySelector(".btnCancelLogIn")
+let inputUserName = document.querySelector(".userName")
+let inputPassWord = document.querySelector(".userPassword")
+
+userBtn.addEventListener("click", (e) => {
+    if(square.style.display === "none"){
+        square.style.display="block";
+    } else {
+        square.style.display="none";
+    }    
+    });
+btnCancel.addEventListener("click", (e) => {
+    square.style.display="none";
+    inputUserName.value = "";
+    inputPassWord.value = "";
+});
+// == END == Script for login-form == END ==
 
 /** Uses the loaded products data to create a visible product list on the website */
 function addProductsToWebpage() {
