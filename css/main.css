@@ -14,6 +14,45 @@
     --clr-accent: rgb(59, 115, 226);
 }
 
+
+i{
+    margin-top: 10px;
+
+}
+
+h4 {
+    margin-left: 20px;
+    margin-top: 30px;
+    font-family: var(--ff-primary);
+    font-size: 1.125rem;
+}
+
+h2 {
+    margin-top: 20px;
+    padding-top: 20px;
+    font-family: var(--ff-primary);
+    font-size: 2.5rem;
+}
+
+p {
+    font-family: var(--ff-primary);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+div {
+    align-content: center;
+    text-align: center;
+}
+
+i {
+    margin-top: 10px;
+
+
+}
+
+
+/* ------ Navbar, ikoner och logga ------- */
 header {
     display: flex;
     justify-content: space-between;
@@ -72,41 +111,18 @@ header {
     margin-top: 10px;
 }
 
-i{
-    margin-top: 10px;
+.pWelcome {
+    margin-right: 15px;
 
 }
 
-h4 {
-    margin-left: 20px;
-    margin-top: 30px;
-    font-family: var(--ff-primary);
-    font-size: 1.125rem;
+.pWelcome{
+    font-size: 0.75rem;
+    padding-right: 1.5rem;
+    color: var(--clr-light);
 }
 
-h2 {
-    margin-top: 20px;
-    padding-top: 20px;
-    font-family: var(--ff-primary);
-    font-size: 2.5rem;
-}
-
-p {
-    font-family: var(--ff-primary);
-    font-size: 1rem;
-    font-weight: 500;
-}
-
-div {
-    align-content: center;
-    text-align: center;
-}
-
-i {
-    margin-top: 10px;
-
-
-}
+/* ------ ItemCard, cardContainer etc. ------- */
 
 .container {
     display: flex;
@@ -147,50 +163,98 @@ i {
     transform: scale(0.97);
 }
 
-/* CSS for input box */
+/* ------ CSS for input box ------- */
 .square {
     position: absolute;
-    top: 20%;
-    left: 30%;
+    top: 10%;
+    right: 2%;
     width: 350px;
-    height: 300px;
+    height: 250px;
     background-color: rgba(255, 255, 255, 0.90);
-    border: 3px solid darkgray;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.074);
+    border: 3px solid rgba(169, 169, 169, 0.081);
     display: flex;
     justify-content: center;
     display: none;
+    margin: 0.75rem;
+    padding: 0.75rem;
 }
+
 
 .inputFields {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center;   
 }
 
+
 .userName {
-    margin-top: 50px;
-    margin-bottom: 15px;
-    width: 250px;
+    display: block;
+    width: 95%;
+    padding: 0.75rem;
+    box-sizing: border-box;
+    border-radius: var(--border-radius);
+    border: 1px solid #dddddd;
+    outline: none;
+    background: #eeeeee;
+    transition: background 0.2s, border-color 0.2s;
 }
 
 .userPassword {
-    margin: 15px;
-    width: 250px;
+    display: block;
+    width: 95%;
+    padding: 0.75rem;
+    margin: 0.75rem;
+    box-sizing: border-box;
+    border-radius: var(--border-radius);
+    border: 1px solid #dddddd;
+    outline: none;
+    background: #eeeeee;
+    transition: background 0.2s, border-color 0.2s;
 }
+
+.userPassword:focus, 
+.userName:focus {
+        border-color: var(--color-primary);
+        background: #ffffff;
+    }
 
 .buttons {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 }
-.pWelcome {
-    margin-right: 15px;
 
+.buttons button {
+    width: 95%;
+    height: 3rem;
+    padding: 1rem 1rem;
+    margin: 0.5rem;
+    text-align: center;
+    font-size: 0.75rem;
+    border:none;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    background-color: var(--clr-accent);
+    color: var(--clr-light);
 }
 
-.pWelcome{
+.buttons button:active {
+    transform: scale(0.98);
+}
+
+.buttons button:hover{
+    background-color: rgb(119, 164, 255);
+}
+
+.errorMessage,
+.errorMessage p {
+    text-align: center;
+    margin-bottom: 0.75rem;
+    margin-top: 0.8rem;
+    color: var(--color-error);
     font-size: 0.75rem;
-    padding-right: 1.5rem;
-    color: var(--clr-light);
+    color: #ca484c;
 }
 
