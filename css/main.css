@@ -18,7 +18,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 3rem;
+    height: 3.5rem;
     background-color: var(--clr-dark);
     position: fixed;
     top: 0;
@@ -35,8 +35,9 @@ header {
 .user,
 .cart {
     padding: 5px;
-    font-size: 1.125rem;
+    font-size: 1rem;
     cursor: pointer;
+
 }
 
 .user:hover,
@@ -69,6 +70,11 @@ header {
     font-size: 0.75rem;
     font-weight: bold;
     margin-top: 10px;
+}
+
+i{
+    margin-top: 10px;
+
 }
 
 h4 {
@@ -145,7 +151,7 @@ i {
 .square {
     position: absolute;
     top: 20%;
-    left: 43%;
+    left: 30%;
     width: 350px;
     height: 300px;
     background-color: rgba(255, 255, 255, 0.90);
@@ -177,8 +183,14 @@ i {
     justify-content: space-around;
     align-items: center;
 }
-
 .pWelcome {
     margin-right: 15px;
 
 }
+
+.pWelcome{
+    font-size: 0.75rem;
+    padding-right: 1.5rem;
+    color: var(--clr-light);
+}
+
