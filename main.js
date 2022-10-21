@@ -10,7 +10,7 @@ square = document.querySelector(".square");
 btnCancel = document.querySelector(".btnCancelLogIn");
 inputUsername = document.querySelector(".userName");
 inputPassword = document.querySelector(".userPassword");
-logInBtn = document.querySelector(".btnLogIn"); 
+logInBtn = document.querySelector(".btnLogIn");
 logOutBtn = document.querySelector(".btnLogOut");
 pWelcome = document.querySelector(".pWelcome");
 //console.log(logInBtn)
@@ -18,24 +18,24 @@ pWelcome = document.querySelector(".pWelcome");
 /** Get products from the json file and store it in a gobal variable */
 function loadProducts() {
     fetch("./products.json")
-    .then(function(response) {
-        return response.json();
-    })
-    .then(function(products) {
-        listOfProducts = products;
-        addProductsToWebpage();
-    });
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (products) {
+            listOfProducts = products;
+            addProductsToWebpage();
+        });
 }
 function initSite() {
-    
+
     initDefaultUsers();
     loadProducts();
     let itemCart = localStorage.doList;
     if (itemCart) {
         inCart = JSON.parse(itemCart);
     }
-   document.getElementById("itemCounter").innerHTML = inCart.length;
-   anyoneHome();
+    document.getElementById("itemCounter").innerHTML = inCart.length;
+    anyoneHome();
 }
 
 
@@ -46,8 +46,8 @@ function addProductsToWebpage() {
     mainContainer.classList = "container";
     main.appendChild(mainContainer);
 
-    for (let i = 0; i <listOfProducts.length; i++) {
-       let selectedItem = listOfProducts[i];
+    for (let i = 0; i < listOfProducts.length; i++) {
+        let selectedItem = listOfProducts[i];
 
         let itemCard = document.createElement("div");
         itemCard.classList = "itemCardDiv";
@@ -64,10 +64,10 @@ function addProductsToWebpage() {
         let itemBtn = document.createElement("button");
         itemBtn.classList = "addItemBtn";
         itemBtn.name = selectedItem.title;
-        itemBtn.addEventListener("click", () => {
+        itemBtn.onclick = function () {
             addToCart(this.name);
-        })
-        
+        };
+
 
         itemTitle.innerText = selectedItem.title;
         itemText.innerText = selectedItem.description;
@@ -109,37 +109,37 @@ function counter() {
 
 
 userBtn.addEventListener("click", (e) => {
-        showLoginForm()
-    });
+    showLoginForm()
+});
 
-function showLoginForm(){
-    if(localStorage.getItem("loggedInUser")){
+function showLoginForm() {
+    if (localStorage.getItem("loggedInUser")) {
         logoutForm();
     } else {
-    if(square.style.display === "none"){
-        square.style.display="block";
-        logOutBtn.style.display="none";
-        inputUsername.style.display="block";
-        inputPassword.style.display="block";
-        logInBtn.style.display="block";
-        
-        login();
-    } else {
-        square.style.display="none";
+        if (square.style.display === "none") {
+            square.style.display = "block";
+            logOutBtn.style.display = "none";
+            inputUsername.style.display = "block";
+            inputPassword.style.display = "block";
+            logInBtn.style.display = "block";
+
+            login();
+        } else {
+            square.style.display = "none";
+        }
     }
-}    
 }
 
-function logoutForm(){
-    if(square.style.display === "none"){
-        square.style.display="block";
-        inputUsername.style.display="none";
-        inputPassword.style.display="none";
-        logInBtn.style.display="none";
-        logOutBtn.style.display="block";
+function logoutForm() {
+    if (square.style.display === "none") {
+        square.style.display = "block";
+        inputUsername.style.display = "none";
+        inputPassword.style.display = "none";
+        logInBtn.style.display = "none";
+        logOutBtn.style.display = "block";
         logOut();
     } else {
-        square.style.display="none";
+        square.style.display = "none";
     }
     console.log("Visa utloggning")
 }
@@ -150,12 +150,12 @@ function logoutForm(){
 
 // == END == Script for login-form == END ==
 btnCancel.addEventListener("click", (e) => {
-    square.style.display="none";
+    square.style.display = "none";
     inputUsername.value = "";
     inputPassword.value = "";
 });
 
-function initDefaultUsers(){
+function initDefaultUsers() {
     defUserList = [
         {
             userName: "Fredrik",
@@ -165,62 +165,62 @@ function initDefaultUsers(){
             userName: "Grupp2",
             password: "555"
         }
-];
-tempUserList = (localStorage.getItem("users", ));
-if(!tempUserList){
-    localStorage.setItem("users", JSON.stringify(defUserList)); //Ladda upp defUserList
-}
-tempUserList = JSON.parse(localStorage.getItem("users", )); //Ladda ner
-userList = tempUserList;
+    ];
+    tempUserList = (localStorage.getItem("users",));
+    if (!tempUserList) {
+        localStorage.setItem("users", JSON.stringify(defUserList)); //Ladda upp defUserList
+    }
+    tempUserList = JSON.parse(localStorage.getItem("users",)); //Ladda ner
+    userList = tempUserList;
 };
 
 
-function login(){
-    logInBtn = document.querySelector(".btnLogIn"); 
-    logInBtn.addEventListener("click", function() {
+function login() {
+    logInBtn = document.querySelector(".btnLogIn");
+    logInBtn.addEventListener("click", function () {
         let obj = userList.find(o => o.userName === inputUsername.value)
-            if(obj != undefined){
-                for (let x of userList) {
-                if(inputUsername.value === x.userName && inputPassword.value === x.password){
+        if (obj != undefined) {
+            for (let x of userList) {
+                if (inputUsername.value === x.userName && inputPassword.value === x.password) {
                     logInUser(inputUsername.value);
-                return  
-                } 
-                };
-                console.log("Felaktigt användarnamn eller lösenord") ;
-                //felmeddelande("Felaktigt användarnamn eller lösenord. Försök igen.");
-            } else {
-                console.log("Användarnamnet finns inte");
-                //felmeddelande("Användarnamnet finns inte. Försök igen.")
-            }
+                    return
+                }
+            };
+            console.log("Felaktigt användarnamn eller lösenord");
+            //felmeddelande("Felaktigt användarnamn eller lösenord. Försök igen.");
+        } else {
+            console.log("Användarnamnet finns inte");
+            //felmeddelande("Användarnamnet finns inte. Försök igen.")
+        }
     });
     //createAccountBtn = document.querySelector("#createAccountBtn");
     //createAccountBtn.addEventListener("click", function() {
     //    showCreateAccount()
     //})
 };
-function logOut(){
+function logOut() {
     logOutBtn.addEventListener("click", (e) => {
         localStorage.removeItem("loggedInUser");
         //loginForm.style.display="block";
         //logoutBtn.style.display="none";
-        square.style.display="none";
-        pWelcome.innerText="";
+        square.style.display = "none";
+        pWelcome.innerText = "";
     })
 }
-function logInUser(username){
-    
+function logInUser(username) {
+
     localStorage.setItem("loggedInUser", username);
-    pWelcome.innerText=`Välkommen ${username}!`;
+    pWelcome.innerText = `Välkommen ${username}!`;
     inputUsername.value = "";
     inputPassword.value = "";
-    square.style.display ="none";
-    
+    square.style.display = "none";
+
 
 }
-function anyoneHome(){
-    if(localStorage.getItem("loggedInUser")){
+function anyoneHome() {
+    if (localStorage.getItem("loggedInUser")) {
         loggedInUser = localStorage.getItem("loggedInUser")
         pWelcome = document.querySelector(".pWelcome");
-        pWelcome.innerText=("Välkommen tillbaka, " + loggedInUser +"!");
+        pWelcome.innerText = ("Välkommen tillbaka, " + loggedInUser + "!");
     }
 };
