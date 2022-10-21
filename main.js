@@ -13,6 +13,7 @@ inputPassword = document.querySelector(".userPassword");
 logInBtn = document.querySelector(".btnLogIn");
 logOutBtn = document.querySelector(".btnLogOut");
 pWelcome = document.querySelector(".pWelcome");
+errorMessage = document.querySelector(".errorMessage-text");
 //console.log(logInBtn)
 
 /** Get products from the json file and store it in a gobal variable */
@@ -189,6 +190,7 @@ function login() {
             console.log("Felaktigt användarnamn eller lösenord");
             //felmeddelande("Felaktigt användarnamn eller lösenord. Försök igen.");
         } else {
+            logInFail();
             console.log("Användarnamnet finns inte");
             //felmeddelande("Användarnamnet finns inte. Försök igen.")
         }
@@ -214,9 +216,10 @@ function logInUser(username) {
     inputUsername.value = "";
     inputPassword.value = "";
     square.style.display = "none";
-
+    errorMessage.innerText="";
 
 }
+
 function anyoneHome() {
     if (localStorage.getItem("loggedInUser")) {
         loggedInUser = localStorage.getItem("loggedInUser")
@@ -224,3 +227,14 @@ function anyoneHome() {
         pWelcome.innerText = ("Välkommen tillbaka, " + loggedInUser + "!");
     }
 };
+
+
+//Funktion för felmeddelande vid misslyckad inloggning
+ function logInFail (){ 
+    let errorMessage = document.querySelector(".errorMessage-text");
+    errorMessage.innerText = "Inloggning misslyckad.. försök igen";
+    let passwordInput = document.querySelector(".userPassword");
+    let usernameInput = document.querySelector(".userName")
+    passwordInput.value="";
+    usernameInput.value="";
+}
