@@ -1,4 +1,3 @@
-
 *,
 *::after,
 *::before {
@@ -6,16 +5,16 @@
 }
 
 
-:root{
-    --ff-primary:'Poppins';
+:root {
+    --ff-primary: 'Poppins';
     --ff-secondary: ;
 
-    --clr-dark: rgb(26, 26, 27); 
+    --clr-dark: rgb(26, 26, 27);
     --clr-light: rgba(239, 240, 242, 1);
     --clr-accent: rgb(59, 115, 226);
 }
 
-header{
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,38 +25,38 @@ header{
     width: 100%;
 }
 
-.navRight{
+.navRight {
     display: flex;
     flex-direction: row;
     padding: 1rem;
     color: var(--clr-light);
 }
 
-.user, 
-.cart{
+.user,
+.cart {
     padding: 5px;
     font-size: 1rem;
     cursor: pointer;
 
 }
 
-.user:hover, 
+.user:hover,
 .cart:hover {
     transform: scale(0.97);
 
 }
 
-.navLeft{
+.navLeft {
     font-family: var(--ff-primary);
     padding: 1rem;
 }
 
-.navLeft a{
+.navLeft a {
     text-decoration: none;
     color: var(--clr-light);
 }
 
-.cartItems{
+.cartItems {
     height: 1rem;
     width: 1rem;
     background-color: red;
@@ -75,6 +74,7 @@ header{
 
 i{
     margin-top: 10px;
+
 }
 
 h4 {
@@ -102,7 +102,13 @@ div {
     text-align: center;
 }
 
-.container{
+i {
+    margin-top: 10px;
+
+
+}
+
+.container {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -137,12 +143,13 @@ div {
 }
 
 .addItemBtn:hover {
-    background-color: rgb(119, 164, 255); 
+    background-color: rgb(119, 164, 255);
     transform: scale(0.97);
 }
+
 /* CSS for input box */
-.square{
-    position: absolute; 
+.square {
+    position: absolute;
     top: 20%;
     left: 30%;
     width: 350px;
@@ -153,25 +160,34 @@ div {
     justify-content: center;
     display: none;
 }
-.inputFields{
+
+.inputFields {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .userName {
     margin-top: 50px;
     margin-bottom: 15px;
     width: 250px;
 }
-.userPassword{
+
+.userPassword {
     margin: 15px;
     width: 250px;
 }
-.buttons{
+
+.buttons {
     display: flex;
     justify-content: space-around;
-    align-items: center;    
+    align-items: center;
 }
+.pWelcome {
+    margin-right: 15px;
+
+}
+
 .pWelcome{
     font-size: 0.75rem;
     padding-right: 1.5rem;
