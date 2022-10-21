@@ -15,9 +15,13 @@ createPassword = document.querySelector(".createPassword");
 logInBtn = document.querySelector(".btnLogIn");
 logOutBtn = document.querySelector(".btnLogOut");
 pWelcome = document.querySelector(".pWelcome");
+
 errormessage = document.querySelector(".errorMessage-text");
 btnCreateUser = document.querySelector(".btnCreateUser");
 btnSaveNewUser = document.querySelector(".btnSaveNewUser");
+
+errorMessage = document.querySelector(".errorMessage-text");
+
 //console.log(logInBtn)
 
 /** Get products from the json file and store it in a gobal variable */
@@ -235,6 +239,7 @@ function login() {
             console.log("Felaktigt användarnamn eller lösenord");
             errorCode("Wrong username or password. Try again.");
         } else {
+            logInFail();
             console.log("Användarnamnet finns inte");
             errorCode("Username doesn´t exist. Try again.")
         }
@@ -257,9 +262,10 @@ function logInUser(username) {
     inputUsername.value = "";
     inputPassword.value = "";
     square.style.display = "none";
-
+    errorMessage.innerText="";
 
 }
+
 function anyoneHome() {
     if (localStorage.getItem("loggedInUser")) {
         loggedInUser = localStorage.getItem("loggedInUser")
@@ -267,7 +273,11 @@ function anyoneHome() {
         pWelcome.innerText = ("Välkommen tillbaka, " + loggedInUser + "!");
     }
 };
+
 function errorCode(errorCode){
     errormessage.style.display="block";
     errormessage.textContent = errorCode;
 };
+
+
+
