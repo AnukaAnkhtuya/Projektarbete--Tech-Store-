@@ -10,10 +10,14 @@ square = document.querySelector(".square");
 btnCancel = document.querySelector(".btnCancelLogIn");
 inputUsername = document.querySelector(".userName");
 inputPassword = document.querySelector(".userPassword");
+createUsername = document.querySelector(".createUsername");
+createPassword = document.querySelector(".createPassword");
 logInBtn = document.querySelector(".btnLogIn");
 logOutBtn = document.querySelector(".btnLogOut");
 pWelcome = document.querySelector(".pWelcome");
 errormessage = document.querySelector(".errorMessage-text");
+btnCreateUser = document.querySelector(".btnCreateUser");
+btnSaveNewUser = document.querySelector(".btnSaveNewUser");
 //console.log(logInBtn)
 
 /** Get products from the json file and store it in a gobal variable */
@@ -124,6 +128,11 @@ function showLoginForm() {
             inputUsername.style.display = "block";
             inputPassword.style.display = "block";
             logInBtn.style.display = "block";
+            btnCreateUser.style.display = "block";
+            createUsername.style.display = "none";
+            createPassword.style.display = "none";
+            btnSaveNewUser.style.display = "none";
+            
 
             login();
         } else {
@@ -139,6 +148,10 @@ function logoutForm() {
         inputPassword.style.display = "none";
         logInBtn.style.display = "none";
         logOutBtn.style.display = "block";
+        btnCreateUser.style.display = "none";
+        createUsername.style.display = "none";
+        createPassword.style.display = "none";
+        btnSaveNewUser.style.display = "none";
         logOut();
     } else {
         square.style.display = "none";
@@ -146,11 +159,42 @@ function logoutForm() {
     console.log("Visa utloggning")
 }
 
-
-
-
-
 // == END == Script for login-form == END ==
+btnCreateUser.addEventListener("click", createUser);
+
+// == CREATE USER FORM ==
+function createUser(){
+    square.style.display = "block";
+    inputUsername.style.display = "none";
+    inputPassword.style.display = "none";
+    createUsername.style.display = "block";
+    createPassword.style.display = "block";
+    logInBtn.style.display = "none";
+    logOutBtn.style.display = "none";
+    btnCreateUser.style.display = "none";
+    btnSaveNewUser.style.display = "block";
+    btnSaveNewUser.addEventListener("click", saveNewUser);
+}
+function saveNewUser(){
+    user ={
+        userName: createUsername.value,
+        password: createPassword.value
+        }
+        let obj = userList.find(o => o.userName === createUsername.value);
+        if(obj != undefined){
+            errorCode("Username occupied. Try another username");
+        } else {
+            userList.push(user);
+            localStorage.setItem("users", JSON.stringify(userList));
+            userList = JSON.parse(localStorage.getItem("users", ));
+            errorCode();
+            errorCode("The account: " + createUsername.value + " was created.");
+            createUsername.value=("");
+            createPassword.value=("");
+            
+            }
+}
+
 btnCancel.addEventListener("click", (e) => {
     square.style.display = "none";
     inputUsername.value = "";
@@ -189,16 +233,13 @@ function login() {
                 }
             };
             console.log("Felaktigt användarnamn eller lösenord");
-            errorCode("Felaktigt användarnamn eller lösenord. Försök igen.");
+            errorCode("Wrong username or password. Try again.");
         } else {
             console.log("Användarnamnet finns inte");
-            errorCode("Användarnamnet finns inte. Försök igen.")
+            errorCode("Username doesn´t exist. Try again.")
         }
     });
-    //createAccountBtn = document.querySelector("#createAccountBtn");
-    //createAccountBtn.addEventListener("click", function() {
-    //    showCreateAccount()
-    //})
+
 };
 function logOut() {
     logOutBtn.addEventListener("click", (e) => {
