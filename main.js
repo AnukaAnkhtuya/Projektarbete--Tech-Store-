@@ -119,6 +119,9 @@ function showLoginForm(){
     if(square.style.display === "none"){
         square.style.display="block";
         logOutBtn.style.display="none";
+        inputUsername.style.display="block";
+        inputPassword.style.display="block";
+        logInBtn.style.display="block";
         
         login();
     } else {
@@ -201,7 +204,7 @@ function logOut(){
         //loginForm.style.display="block";
         //logoutBtn.style.display="none";
         square.style.display="none";
-        pWelcome.innerText=""
+        pWelcome.innerText="";
     })
 }
 function logInUser(username){
