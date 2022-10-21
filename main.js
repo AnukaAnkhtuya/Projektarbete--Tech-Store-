@@ -13,6 +13,7 @@ inputPassword = document.querySelector(".userPassword");
 logInBtn = document.querySelector(".btnLogIn");
 logOutBtn = document.querySelector(".btnLogOut");
 pWelcome = document.querySelector(".pWelcome");
+errormessage = document.querySelector(".errorMessage-text");
 //console.log(logInBtn)
 
 /** Get products from the json file and store it in a gobal variable */
@@ -109,6 +110,7 @@ function counter() {
 
 
 userBtn.addEventListener("click", (e) => {
+    errormessage.style.display="none";
     showLoginForm()
 });
 
@@ -187,10 +189,10 @@ function login() {
                 }
             };
             console.log("Felaktigt användarnamn eller lösenord");
-            //felmeddelande("Felaktigt användarnamn eller lösenord. Försök igen.");
+            errorCode("Felaktigt användarnamn eller lösenord. Försök igen.");
         } else {
             console.log("Användarnamnet finns inte");
-            //felmeddelande("Användarnamnet finns inte. Försök igen.")
+            errorCode("Användarnamnet finns inte. Försök igen.")
         }
     });
     //createAccountBtn = document.querySelector("#createAccountBtn");
@@ -223,4 +225,8 @@ function anyoneHome() {
         pWelcome = document.querySelector(".pWelcome");
         pWelcome.innerText = ("Välkommen tillbaka, " + loggedInUser + "!");
     }
+};
+function errorCode(errorCode){
+    errormessage.style.display="block";
+    errormessage.textContent = errorCode;
 };
