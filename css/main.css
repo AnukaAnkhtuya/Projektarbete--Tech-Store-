@@ -1,0 +1,180 @@
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+
+:root{
+    --ff-primary:'Poppins';
+    --ff-secondary: ;
+
+    --clr-dark: rgb(26, 26, 27); 
+    --clr-light: rgba(239, 240, 242, 1);
+    --clr-accent: rgb(59, 115, 226);
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3.5rem;
+    background-color: var(--clr-dark);
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.navRight{
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    color: var(--clr-light);
+}
+
+.user, 
+.cart{
+    padding: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+
+}
+
+.user:hover, 
+.cart:hover {
+    transform: scale(0.97);
+
+}
+
+.navLeft{
+    font-family: var(--ff-primary);
+    padding: 1rem;
+}
+
+.navLeft a{
+    text-decoration: none;
+    color: var(--clr-light);
+}
+
+.cartItems{
+    height: 1rem;
+    width: 1rem;
+    background-color: red;
+    position: relative;
+    left: -10px;
+    top: -5px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+i{
+    margin-top: 10px;
+}
+
+h4 {
+    margin-left: 20px;
+    margin-top: 30px;
+    font-family: var(--ff-primary);
+    font-size: 1.125rem;
+}
+
+h2 {
+    margin-top: 20px;
+    padding-top: 20px;
+    font-family: var(--ff-primary);
+    font-size: 2.5rem;
+}
+
+p {
+    font-family: var(--ff-primary);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+div {
+    align-content: center;
+    text-align: center;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.itemCardDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+
+
+.itemImage {
+    height: 50vh;
+    width: auto;
+}
+
+.addItemBtn {
+    background-color: var(--clr-accent);
+    color: var(--clr-light);
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--ff-primary);
+    font-size: 0.75rem;
+
+
+}
+
+.addItemBtn:hover {
+    background-color: rgb(119, 164, 255); 
+    transform: scale(0.97);
+}
+/* CSS for input box */
+.square{
+    position: absolute; 
+    top: 20%;
+    left: 30%;
+    width: 350px;
+    height: 300px;
+    background-color: rgba(255, 255, 255, 0.90);
+    border: 3px solid darkgray;
+    display: flex;
+    justify-content: center;
+    display: none;
+}
+.inputFields{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.userName {
+    margin-top: 50px;
+    margin-bottom: 15px;
+    width: 250px;
+}
+.userPassword{
+    margin: 15px;
+    width: 250px;
+}
+.buttons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;    
+}
+.pWelcome{
+    font-size: 0.75rem;
+    padding-right: 1.5rem;
+    color: var(--clr-light);
+}
+
