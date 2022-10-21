@@ -26,6 +26,7 @@ function loadProducts() {
     });
 }
 function initSite() {
+    
     initDefaultUsers();
     loadProducts();
     let itemCart = localStorage.doList;
@@ -33,6 +34,7 @@ function initSite() {
         inCart = JSON.parse(itemCart);
     }
    document.getElementById("itemCounter").innerHTML = inCart.length;
+   anyoneHome();
 }
 
 
@@ -162,8 +164,20 @@ function login(){
     //})
 };
 function logInUser(username){
-    square.display = "none";
+    
     localStorage.setItem("loggedInUser", username);
-    pWelcome.innerText="sdfklj";
+    pWelcome.innerText=`Välkommen ${username}!`;
+    inputUsername.value = "";
+    inputPassword.value = "";
+    square.style.display ="none";
+    
     //DÖLJ LOGINFÖNSTER. Fixa refresh. Ovan händer bara en gång. Lägga till i init? 
 }
+function anyoneHome(){
+    if(localStorage.getItem("loggedInUser")){
+        loggedInUser = localStorage.getItem("loggedInUser")
+        pWelcome = document.querySelector(".pWelcome");
+        pWelcome.innerText=("Välkommen tillbaka, " + loggedInUser +"!");
+        showLogout();
+    }
+};

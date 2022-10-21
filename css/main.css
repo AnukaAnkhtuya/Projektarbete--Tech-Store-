@@ -136,7 +136,7 @@ div {
 .square{
     position: absolute; 
     top: 20%;
-    left: 870px;
+    left: 43%;
     width: 350px;
     height: 300px;
     background-color: rgba(255, 255, 255, 0.90);
@@ -163,4 +163,7 @@ div {
     display: flex;
     justify-content: space-around;
     align-items: center;    
+}
+.pWelcome{
+    margin-right: 15px;
 }
