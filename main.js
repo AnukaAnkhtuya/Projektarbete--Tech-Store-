@@ -11,6 +11,7 @@ btnCancel = document.querySelector(".btnCancelLogIn");
 inputUsername = document.querySelector(".userName");
 inputPassword = document.querySelector(".userPassword");
 logInBtn = document.querySelector(".btnLogIn"); 
+logOutBtn = document.querySelector(".btnLogOut");
 pWelcome = document.querySelector(".pWelcome");
 //console.log(logInBtn)
 
@@ -105,14 +106,45 @@ function counter() {
 }
 
 // === Script for showing login-form ===
+
+
 userBtn.addEventListener("click", (e) => {
+        showLoginForm()
+    });
+
+function showLoginForm(){
+    if(localStorage.getItem("loggedInUser")){
+        logoutForm();
+    } else {
     if(square.style.display === "none"){
         square.style.display="block";
+        logOutBtn.style.display="none";
+        
         login();
     } else {
         square.style.display="none";
-    }    
-    });
+    }
+}    
+}
+
+function logoutForm(){
+    if(square.style.display === "none"){
+        square.style.display="block";
+        inputUsername.style.display="none";
+        inputPassword.style.display="none";
+        logInBtn.style.display="none";
+        logOutBtn.style.display="block";
+        logOut();
+    } else {
+        square.style.display="none";
+    }
+    console.log("Visa utloggning")
+}
+
+
+
+
+
 // == END == Script for login-form == END ==
 btnCancel.addEventListener("click", (e) => {
     square.style.display="none";
@@ -163,6 +195,15 @@ function login(){
     //    showCreateAccount()
     //})
 };
+function logOut(){
+    logOutBtn.addEventListener("click", (e) => {
+        localStorage.removeItem("loggedInUser");
+        //loginForm.style.display="block";
+        //logoutBtn.style.display="none";
+        square.style.display="none";
+        pWelcome.innerText=""
+    })
+}
 function logInUser(username){
     
     localStorage.setItem("loggedInUser", username);
@@ -171,13 +212,12 @@ function logInUser(username){
     inputPassword.value = "";
     square.style.display ="none";
     
-    //DÖLJ LOGINFÖNSTER. Fixa refresh. Ovan händer bara en gång. Lägga till i init? 
+
 }
 function anyoneHome(){
     if(localStorage.getItem("loggedInUser")){
         loggedInUser = localStorage.getItem("loggedInUser")
         pWelcome = document.querySelector(".pWelcome");
         pWelcome.innerText=("Välkommen tillbaka, " + loggedInUser +"!");
-        showLogout();
     }
 };
