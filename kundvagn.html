@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>TechStore</title>
+    <title>Kundvagn</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,6 +15,7 @@
     <link rel="stylesheet" media="(max-width: 1149px) and (min-width: 790px)" href="css/tablet.css">
     <link rel="stylesheet" media="(max-width: 789px)" href="css/mobile.css">
     <script src="main.js" defer></script>
+    <script src="kundvagn.js" defer></script>
 </head>
 
 <body onload="initSite()">
@@ -28,9 +29,11 @@
             <div class="loggedInUser">
                 <p class="pWelcome"></p>
             </div>
-            <div class="user"><i class="fa-solid fa-user"></i></div>
+            <div class="user"> 
+           <i class="fa-solid fa-user"></i>
+            </div>
             <a href="kundvagn.html"><div class="cart"><i class="fa-solid fa-cart-shopping"></i></div></a>
-            <div class="cartItems" id="itemCounter">"</div>
+            <div class="cartItems" id="itemCounter"></div>
         </div>
     </header>
 
@@ -49,7 +52,7 @@
             </div>
             <div class="buttons">
                 <button class="btnLogIn">Log In</button>
-                <button class="btnBack">Back to login</button>
+                <button class="btnCancelLogIn">Cancel</button>
                 <button class="btnLogOut">Log Out</button>
                 <button class="btnCreateUser">Create Account</button>
                 <button class="btnSaveNewUser">Save</button>
