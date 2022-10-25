@@ -81,7 +81,10 @@ header {
 .user:hover,
 .cart:hover {
     transform: scale(0.97);
+}
 
+.navRight a{
+    color: var(--clr-light);
 }
 
 .navLeft {
@@ -283,4 +286,41 @@ header {
     color: var(--color-error);
     font-size: 0.75rem;
     color: #ca484c;
+
+}
+
+/* ----  KUNDVAGN -----*/
+.cartTitleDiv {
+    display: flex;
+    align-content: center;
+    margin-top: 50px;
+    justify-content: center;
+
+}
+
+.cartTitle{
+    font-family: var(--ff-primary);
+    font-size: 4rem;
+
+}
+
+.cartItemDiv {
+    margin-top: 40px;
+}
+
+.cartContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.cartItemImg {
+    max-height: 90px;
+}
+
+.totalPriceText{
+    font-family: var(--ff-primary);
+    font-size: 2.5rem;
+
+
 }
