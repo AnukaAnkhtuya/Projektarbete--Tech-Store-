@@ -3,18 +3,18 @@ var inCart = [];
 
 var tempUserList;
 
-navRight = document.querySelector(".navRight");
-userBtn = document.querySelector(".user");
-
-square = document.querySelector(".square");
-btnCancel = document.querySelector(".btnCancelLogIn");
-inputUsername = document.querySelector(".userName");
-inputPassword = document.querySelector(".userPassword");
-createUsername = document.querySelector(".createUsername");
-createPassword = document.querySelector(".createPassword");
-logInBtn = document.querySelector(".btnLogIn");
-logOutBtn = document.querySelector(".btnLogOut");
-pWelcome = document.querySelector(".pWelcome");
+const navRight = document.querySelector(".navRight");
+const userBtn = document.querySelector(".user");
+const btnBack = document.querySelector(".btnBack");
+const square = document.querySelector(".square");
+const btnCancel = document.querySelector(".btnCancelLogIn");
+const inputUsername = document.querySelector(".userName");
+const inputPassword = document.querySelector(".userPassword");
+const createUsername = document.querySelector(".createUsername");
+const createPassword = document.querySelector(".createPassword");
+const logInBtn = document.querySelector(".btnLogIn");
+const logOutBtn = document.querySelector(".btnLogOut");
+const pWelcome = document.querySelector(".pWelcome");
 
 errormessage = document.querySelector(".errorMessage-text");
 btnCreateUser = document.querySelector(".btnCreateUser");
@@ -115,20 +115,21 @@ function counter() {
 }
 
 // === Script for showing login-form ===
+console.log(userBtn)
 
-
-userBtn.addEventListener("click", (e) => {
-    errormessage.style.display="none";
-    showLoginForm()
-});
+userBtn.addEventListener("click", showLoginForm);
 
 function showLoginForm() {
+    errormessage.style.display="none";
+
+    
     if (localStorage.getItem("loggedInUser")) {
         logoutForm();
     } else {
         if (square.style.display === "none") {
             square.style.display = "block";
             logOutBtn.style.display = "none";
+            btnBack.style.display ="none";
             inputUsername.style.display = "block";
             inputPassword.style.display = "block";
             logInBtn.style.display = "block";
@@ -173,12 +174,27 @@ function createUser(){
     inputPassword.style.display = "none";
     createUsername.style.display = "block";
     createPassword.style.display = "block";
+    btnBack.style.display ="block";
+    btnBack.addEventListener("click", switchForm)
     logInBtn.style.display = "none";
     logOutBtn.style.display = "none";
     btnCreateUser.style.display = "none";
     btnSaveNewUser.style.display = "block";
     btnSaveNewUser.addEventListener("click", saveNewUser);
 }
+function switchForm(){
+    square.style.display = "block";
+    logOutBtn.style.display = "none";
+    btnBack.style.display ="none";
+    inputUsername.style.display = "block";
+    inputPassword.style.display = "block";
+    logInBtn.style.display = "block";
+    btnCreateUser.style.display = "block";
+    createUsername.style.display = "none";
+    createPassword.style.display = "none";
+    btnSaveNewUser.style.display = "none";
+}
+
 function saveNewUser(){
     user ={
         userName: createUsername.value,
@@ -198,12 +214,13 @@ function saveNewUser(){
             
             }
 }
-
+/*
 btnCancel.addEventListener("click", (e) => {
     square.style.display = "none";
     inputUsername.value = "";
     inputPassword.value = "";
 });
+*/
 
 function initDefaultUsers() {
     defUserList = [
@@ -226,7 +243,6 @@ function initDefaultUsers() {
 
 
 function login() {
-    logInBtn = document.querySelector(".btnLogIn");
     logInBtn.addEventListener("click", function () {
         let obj = userList.find(o => o.userName === inputUsername.value)
         if (obj != undefined) {
@@ -237,9 +253,10 @@ function login() {
                 }
             };
             console.log("Felaktigt användarnamn eller lösenord");
+            inputPassword.value = "";
             errorCode("Wrong username or password. Try again.");
         } else {
-            logInFail();
+            //logInFail();
             console.log("Användarnamnet finns inte");
             errorCode("Username doesn´t exist. Try again.")
         }
@@ -269,7 +286,6 @@ function logInUser(username) {
 function anyoneHome() {
     if (localStorage.getItem("loggedInUser")) {
         loggedInUser = localStorage.getItem("loggedInUser")
-        pWelcome = document.querySelector(".pWelcome");
         pWelcome.innerText = ("Välkommen tillbaka, " + loggedInUser + "!");
     }
 };
