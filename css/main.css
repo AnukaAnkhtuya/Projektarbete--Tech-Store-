@@ -175,7 +175,7 @@ header {
 /* ------ CSS for input box ------- */
 .square {
     position: fixed;
-    top: 5%;
+    top: 8%;
     right: 2%;
     width: 350px;
     height: 250px;
@@ -187,8 +187,6 @@ header {
     display: none;
     margin: 0.75rem;
     padding: 0.75rem;
-
-    
 }
 
 

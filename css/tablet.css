@@ -118,10 +118,8 @@ div {
     margin: 20px;
 }
 
-
-
 .itemImage {
-    height: 50vh;
+    height: 30vh;
     width: auto;
 }
 
@@ -143,7 +141,7 @@ div {
 }
 
 
-* ------ CSS for input box ------- */ 
+* /------ CSS for input box ------- */ 
 .square {
     position: fixed;
     top: 5%;
@@ -159,6 +157,7 @@ div {
     margin: 0.75rem;
     padding: 0.75rem;
 }
+
 
 
 .inputFields {
@@ -347,9 +346,4 @@ div {
     font-family: var(--ff-primary);
     font-size: 0.75rem;
     cursor: pointer;
-    margin-bottom: 0.55rem;
-    margin-top: 0.6rem;
-    color: var(--color-error);
-    font-size: 0.75rem;
-    color: #ca484c;
 }
