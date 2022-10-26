@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
 
 :root{
     --ff-primary:'Poppins';
@@ -43,6 +48,11 @@ header{
     transform: scale(0.97);
 
 }
+
+.navRight a{
+    color: var(--clr-light);
+}
+
 
 .navLeft{
     font-family: var(--ff-primary);
@@ -131,4 +141,206 @@ div {
 .addItemBtn:hover {
     background-color: rgb(119, 164, 255); 
     transform: scale(0.97);
+}
+
+.square {
+    position: fixed;
+    top: 5%;
+    right: 2%;
+    width: 350px;
+    height: 250px;
+    background-color: rgba(255, 255, 255, 0.90);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.074);
+    border: 3px solid rgba(169, 169, 169, 0.081);
+    display: flex;
+    justify-content: center;
+    display: none;
+    margin: 0.75rem;
+    padding: 0.75rem;
+}
+
+
+.inputFields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+}
+
+
+.userName {
+    display: block;
+    width: 95%;
+    padding: 0.75rem;
+    box-sizing: border-box;
+    border-radius: var(--border-radius);
+    border: 1px solid #dddddd;
+    outline: none;
+    background: #eeeeee;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.userPassword {
+    display: block;
+    width: 95%;
+    padding: 0.75rem;
+    margin: 0.75rem;
+    box-sizing: border-box;
+    border-radius: var(--border-radius);
+    border: 1px solid #dddddd;
+    outline: none;
+    background: #eeeeee;
+    transition: background 0.2s, border-color 0.2s;
+}
+.createUsername {
+    display: block;
+    width: 95%;
+    padding: 0.75rem;
+    margin: 0.75rem;
+    box-sizing: border-box;
+    border-radius: var(--border-radius);
+    border: 1px solid #dddddd;
+    outline: none;
+    background: #eeeeee;
+    transition: background 0.2s, border-color 0.2s;
+}
+.createPassword {
+    display: block;
+    width: 95%;
+    padding: 0.75rem;
+    margin: 0.75rem;
+    box-sizing: border-box;
+    border-radius: var(--border-radius);
+    border: 1px solid #dddddd;
+    outline: none;
+    background: #eeeeee;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+
+
+.userPassword:focus, 
+.userName:focus {
+        border-color: var(--color-primary);
+        background: #ffffff;
+    }
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons button {
+    width: 95%;
+    height: 3rem;
+    padding: 1rem 1rem;
+    margin: 0.5rem;
+    text-align: center;
+    font-size: 0.75rem;
+    border:none;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    background-color: var(--clr-accent);
+    color: var(--clr-light);
+}
+
+.buttons button:active {
+    transform: scale(0.98);
+}
+
+.buttons button:hover{
+    background-color: rgb(119, 164, 255);
+}
+
+.errorMessage,
+.errorMessage p {
+    text-align: center;
+    margin-bottom: 0.75rem;
+    margin-top: 0.8rem;
+    color: var(--color-error);
+    font-size: 0.75rem;
+    color: #ca484c;
+}
+
+/*  ------ KUNDVAGN ------*/
+.cartTitleDiv {
+    display: flex;
+    align-content: center;
+    margin-top: 50px;
+    justify-content: center;
+
+}
+
+.cartTitle{
+    font-family: var(--ff-primary);
+    font-size: 2.5rem;
+
+}
+
+.cartItemDiv {
+    padding: 1em;
+    margin-bottom: 1rem;
+}
+
+.cartContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.cartItemTitle{
+    font-family: var(--ff-primary);
+    font-size: 1.5rem;
+}
+
+.cartItemImg {
+    max-height: 90px;
+}
+
+.cartItemPrice{
+    padding-right: 1rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.deleteButton{
+    background-color: #ca484c;
+    color: var(--clr-light);
+    padding: 0.5rem;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--ff-primary);
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.deleteButton:hover{
+    background-color: rgb(119, 164, 255);
+    transform: scale(0.97);
+}
+
+.totalPriceText{
+    font-family: var(--ff-primary);
+    font-weight: 400;
+    font-size: 1.3rem;
+    margin-top: 3rem;
+
+}
+
+.checkOutDiv {
+    margin-bottom: 5rem;
+}
+
+.checkOutButton {
+    background-color: var(--clr-accent);
+    color: var(--clr-light);
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--ff-primary);
+    font-size: 0.75rem;
+    cursor: pointer;
 }
