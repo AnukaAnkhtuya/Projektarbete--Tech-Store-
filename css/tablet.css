@@ -57,6 +57,7 @@ header{
 .navLeft{
     font-family: var(--ff-primary);
     padding: 1rem;
+    font-size: 0.80rem;
 }
 
 .navLeft a{

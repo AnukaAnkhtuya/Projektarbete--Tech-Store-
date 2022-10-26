@@ -23,8 +23,11 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 3rem;
+    height: 3.5rem;
     background-color: var(--clr-dark);
+    position: fixed;
+    top: 0;
+    width: 100%;
 
 }
 
@@ -56,6 +59,7 @@ header{
 .navLeft{
     font-family: var(--ff-primary);
     padding: 1rem;
+    font-size: 0.75rem;
 }
 
 .navLeft a{
@@ -267,7 +271,7 @@ div {
 .cartTitleDiv {
     display: flex;
     align-content: center;
-    margin-top: 50px;
+    margin-top: 80px;
     justify-content: center;
 
 }

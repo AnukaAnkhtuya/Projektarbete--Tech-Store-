@@ -96,7 +96,7 @@ header {
 
 .navLeft {
     font-family: var(--ff-primary);
-    margin: 1.5rem;
+    margin: 2rem;
 }
 
 .navLeft a {
@@ -299,16 +299,18 @@ header {
 /* ----  KUNDVAGN -----*/
 .cartTitleDiv {
     display: flex;
+    flex-direction: row;
     align-content: center;
-    margin-top: 50px;
     justify-content: center;
+    text-align: center;
+    margin-top: 70px;
 
 }
+
 
 .cartTitle{
     font-family: var(--ff-primary);
     font-size: 3.5rem;
-
 }
 
 .cartItemDiv {
@@ -377,3 +379,4 @@ header {
     font-size: 0.75rem;
     cursor: pointer;
 }
+
