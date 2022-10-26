@@ -19,8 +19,7 @@ body {
     --clr-accent: rgb(59, 115, 226);
 }
 
-
-i{
+i {
     margin-top: 10px;
 
 }
@@ -125,7 +124,7 @@ header {
 
 }
 
-.pWelcome{
+.pWelcome {
     font-size: 0.75rem;
     padding-right: 1.5rem;
     color: var(--clr-light);
@@ -196,7 +195,7 @@ header {
 .inputFields {
     display: flex;
     flex-direction: column;
-    align-items: center;   
+    align-items: center;
 }
 
 
@@ -224,6 +223,7 @@ header {
     background: #eeeeee;
     transition: background 0.2s, border-color 0.2s;
 }
+
 .createUsername {
     display: block;
     width: 95%;
@@ -236,6 +236,7 @@ header {
     background: #eeeeee;
     transition: background 0.2s, border-color 0.2s;
 }
+
 .createPassword {
     display: block;
     width: 95%;
@@ -251,11 +252,11 @@ header {
 
 
 
-.userPassword:focus, 
+.userPassword:focus,
 .userName:focus {
-        border-color: var(--color-primary);
-        background: #ffffff;
-    }
+    border-color: var(--color-primary);
+    background: #ffffff;
+}
 
 .buttons {
     display: flex;
@@ -270,7 +271,7 @@ header {
     margin: 0.5rem;
     text-align: center;
     font-size: 0.75rem;
-    border:none;
+    border: none;
     border-radius: 4px;
     outline: none;
     cursor: pointer;
@@ -282,7 +283,7 @@ header {
     transform: scale(0.98);
 }
 
-.buttons button:hover{
+.buttons button:hover {
     background-color: rgb(119, 164, 255);
 }
 
@@ -294,6 +295,7 @@ header {
     color: var(--color-error);
     font-size: 0.75rem;
     color: #ca484c;
+
 }
 
 /* ----  KUNDVAGN -----*/
@@ -379,4 +381,3 @@ header {
     font-size: 0.75rem;
     cursor: pointer;
 }
-
