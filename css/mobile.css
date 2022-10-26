@@ -93,7 +93,7 @@ h2 {
     margin-top: 20px;
     padding-top: 20px;
     font-family: var(--ff-primary);
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 p {
@@ -119,10 +119,8 @@ div {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin: 50px;
+    margin: 40px;
 }
-
-
 
 .itemImage {
     height: 20vh;

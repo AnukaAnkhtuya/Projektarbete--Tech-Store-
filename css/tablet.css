@@ -9,7 +9,6 @@ body {
     padding: 0;
 }
 
-
 :root {
     --ff-primary: 'Poppins';
     --ff-secondary: ;
@@ -23,9 +22,11 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 3rem;
+    height: 3.5rem;
     background-color: var(--clr-dark);
-
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 .navRight {
@@ -48,14 +49,16 @@ header {
 
 }
 
+
 .navRight a{
     color: var(--clr-light);
 }
 
 .navLeft {
+
     font-family: var(--ff-primary);
     padding: 1rem;
-    font-size: 0.80rem;
+    font-size: 0.8rem;
 }
 
 .navLeft a {
@@ -78,6 +81,7 @@ header {
     font-weight: bold;
 }
 
+
 h4 {
     margin-left: 20px;
     margin-top: 30px;
@@ -89,7 +93,7 @@ h2 {
     margin-top: 20px;
     padding-top: 20px;
     font-family: var(--ff-primary);
-    font-size: 2.5rem;
+    font-size: 1.75rem;
 }
 
 p {
@@ -115,8 +119,10 @@ div {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin: 20px;
+    margin: 50px;
 }
+
+
 
 .itemImage {
     height: 30vh;
@@ -131,8 +137,6 @@ div {
     border-radius: 10px;
     font-family: var(--ff-primary);
     font-size: 0.75rem;
-
-
 }
 
 .addItemBtn:hover {
@@ -140,11 +144,9 @@ div {
     transform: scale(0.97);
 }
 
-
-* /------ CSS for input box ------- */ 
 .square {
     position: fixed;
-    top: 5%;
+    top: 8%;
     right: 2%;
     width: 350px;
     height: 250px;
@@ -158,14 +160,11 @@ div {
     padding: 0.75rem;
 }
 
-
-
 .inputFields {
     display: flex;
     flex-direction: column;
     align-items: center;   
 }
-
 
 .userName {
     display: block;
@@ -219,8 +218,6 @@ div {
 }
 
 
-
-
 .userPassword:focus, 
 .userName:focus {
         border-color: var(--color-primary);
@@ -252,6 +249,7 @@ div {
     transform: scale(0.98);
 }
 
+
 .buttons button:hover{
     background-color: rgb(119, 164, 255);
 }
@@ -270,14 +268,14 @@ div {
 .cartTitleDiv {
     display: flex;
     align-content: center;
-    margin-top: 50px;
+    margin-top: 80px;
     justify-content: center;
 
 }
 
 .cartTitle{
     font-family: var(--ff-primary);
-    font-size: 2.5rem;
+    font-size: 2rem;
 
 }
 
@@ -293,7 +291,7 @@ div {
 
 .cartItemTitle{
     font-family: var(--ff-primary);
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .cartItemImg {
@@ -325,8 +323,8 @@ div {
 .totalPriceText{
     font-family: var(--ff-primary);
     font-weight: 400;
-    font-size: 1.3rem;
-    margin-top: 3rem;
+    font-size: 1rem;
+    margin-top: 2rem;
 
 }
 
