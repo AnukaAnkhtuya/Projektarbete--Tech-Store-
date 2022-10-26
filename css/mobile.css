@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+}
 
 :root {
     --ff-primary: 'Poppins';
@@ -18,9 +22,11 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 3rem;
+    height: 3.5rem;
     background-color: var(--clr-dark);
-
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 .navRight {
@@ -43,9 +49,16 @@ header {
 
 }
 
+
+.navRight a{
+    color: var(--clr-light);
+}
+
 .navLeft {
+
     font-family: var(--ff-primary);
     padding: 1rem;
+    font-size: 0.75rem;
 }
 
 .navLeft a {
@@ -80,7 +93,7 @@ h2 {
     margin-top: 20px;
     padding-top: 20px;
     font-family: var(--ff-primary);
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 p {
@@ -106,13 +119,13 @@ div {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin: 20px;
+    margin: 50px;
 }
 
 
 
 .itemImage {
-    height: 50vh;
+    height: 20vh;
     width: auto;
 }
 
@@ -124,8 +137,6 @@ div {
     border-radius: 10px;
     font-family: var(--ff-primary);
     font-size: 0.75rem;
-
-
 }
 
 .addItemBtn:hover {
@@ -133,10 +144,9 @@ div {
     transform: scale(0.97);
 }
 
-/* ------ CSS for input box ------- */
 .square {
-    position: absolute;
-    top: 10%;
+    position: fixed;
+    top: 8%;
     right: 2%;
     width: 350px;
     height: 250px;
@@ -150,13 +160,11 @@ div {
     padding: 0.75rem;
 }
 
-
 .inputFields {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center;   
 }
-
 
 .userName {
     display: block;
@@ -210,12 +218,11 @@ div {
 }
 
 
-
-.userPassword:focus,
+.userPassword:focus, 
 .userName:focus {
-    border-color: var(--color-primary);
-    background: #ffffff;
-}
+        border-color: var(--color-primary);
+        background: #ffffff;
+    }
 
 .buttons {
     display: flex;
@@ -230,7 +237,7 @@ div {
     margin: 0.5rem;
     text-align: center;
     font-size: 0.75rem;
-    border: none;
+    border:none;
     border-radius: 4px;
     outline: none;
     cursor: pointer;
@@ -242,7 +249,8 @@ div {
     transform: scale(0.98);
 }
 
-.buttons button:hover {
+
+.buttons button:hover{
     background-color: rgb(119, 164, 255);
 }
 
@@ -254,4 +262,86 @@ div {
     color: var(--color-error);
     font-size: 0.75rem;
     color: #ca484c;
+}
+
+/*  ------ KUNDVAGN ------*/
+.cartTitleDiv {
+    display: flex;
+    align-content: center;
+    margin-top: 80px;
+    justify-content: center;
+
+}
+
+.cartTitle{
+    font-family: var(--ff-primary);
+    font-size: 2rem;
+
+}
+
+.cartItemDiv {
+    padding: 1em;
+    margin-bottom: 1rem;
+}
+
+.cartContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.cartItemTitle{
+    font-family: var(--ff-primary);
+    font-size: 1rem;
+}
+
+.cartItemImg {
+    max-height: 90px;
+}
+
+.cartItemPrice{
+    padding-right: 1rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.deleteButton{
+    background-color: #ca484c;
+    color: var(--clr-light);
+    padding: 0.5rem;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--ff-primary);
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.deleteButton:hover{
+    background-color: rgb(119, 164, 255);
+    transform: scale(0.97);
+}
+
+.totalPriceText{
+    font-family: var(--ff-primary);
+    font-weight: 400;
+    font-size: 1rem;
+    margin-top: 2rem;
+
+}
+
+.checkOutDiv {
+    margin-bottom: 5rem;
+}
+
+.checkOutButton {
+    background-color: var(--clr-accent);
+    color: var(--clr-light);
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--ff-primary);
+    font-size: 0.75rem;
+    cursor: pointer;
 }

@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
 
 :root {
     --ff-primary: 'Poppins';
@@ -61,6 +66,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
+
 }
 
 .navRight {
@@ -89,7 +95,7 @@ header {
 
 .navLeft {
     font-family: var(--ff-primary);
-    padding: 1rem;
+    margin: 2rem;
 }
 
 .navLeft a {
@@ -139,6 +145,7 @@ header {
     justify-content: center;
     align-items: center;
     margin: 20px;
+    margin-top: 60px;
 }
 
 
@@ -167,8 +174,8 @@ header {
 
 /* ------ CSS for input box ------- */
 .square {
-    position: absolute;
-    top: 10%;
+    position: fixed;
+    top: 8%;
     right: 2%;
     width: 350px;
     height: 250px;
@@ -292,35 +299,83 @@ header {
 /* ----  KUNDVAGN -----*/
 .cartTitleDiv {
     display: flex;
+    flex-direction: row;
     align-content: center;
-    margin-top: 50px;
     justify-content: center;
+    text-align: center;
+    margin-top: 70px;
 
 }
+
 
 .cartTitle{
     font-family: var(--ff-primary);
-    font-size: 4rem;
-
+    font-size: 3.5rem;
 }
 
 .cartItemDiv {
-    margin-top: 40px;
+    padding: 1em;
+    margin-bottom: 1rem;
 }
 
 .cartContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+.cartItemTitle{
+    font-family: var(--ff-primary);
+    font-size: 1.5rem;
 }
 
 .cartItemImg {
     max-height: 90px;
 }
 
+.cartItemPrice{
+    padding-right: 1rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.deleteButton{
+    background-color: #ca484c;
+    color: var(--clr-light);
+    padding: 0.5rem;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--ff-primary);
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.deleteButton:hover{
+    background-color: rgb(119, 164, 255);
+    transform: scale(0.97);
+}
+
 .totalPriceText{
     font-family: var(--ff-primary);
-    font-size: 2.5rem;
+    font-weight: 400;
+    font-size: 1.3rem;
+    margin-top: 4rem;
 
+}
 
+.checkOutDiv {
+    margin-bottom: 5rem;
+}
+
+.checkOutButton {
+    background-color: var(--clr-accent);
+    color: var(--clr-light);
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--ff-primary);
+    font-size: 0.75rem;
+    cursor: pointer;
 }

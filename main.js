@@ -16,11 +16,11 @@ const logInBtn = document.querySelector(".btnLogIn");
 const logOutBtn = document.querySelector(".btnLogOut");
 const pWelcome = document.querySelector(".pWelcome");
 
-errormessage = document.querySelector(".errorMessage-text");
-btnCreateUser = document.querySelector(".btnCreateUser");
-btnSaveNewUser = document.querySelector(".btnSaveNewUser");
+const errormessage = document.querySelector(".errorMessage-text");
+const btnCreateUser = document.querySelector(".btnCreateUser");
+const btnSaveNewUser = document.querySelector(".btnSaveNewUser");
 
-errorMessage = document.querySelector(".errorMessage-text");
+const errorMessage = document.querySelector(".errorMessage-text");
 
 //console.log(logInBtn)
 
@@ -165,6 +165,7 @@ function logoutForm() {
 }
 
 // == END == Script for login-form == END ==
+
 btnCreateUser.addEventListener("click", createUser);
 
 // == CREATE USER FORM ==
