@@ -1,8 +1,4 @@
-*,
-*::after,
-*::before {
-    box-sizing: border-box;
-}
+
 
 body {
     margin: 0;
@@ -39,7 +35,8 @@ header {
 .user,
 .cart {
     padding: 5px;
-    font-size: 1.125rem;
+    margin-top: 6px ;
+    font-size: 13px;
     cursor: pointer;
 }
 
@@ -49,16 +46,14 @@ header {
 
 }
 
-
 .navRight a{
     color: var(--clr-light);
 }
 
 .navLeft {
-
     font-family: var(--ff-primary);
     padding: 1rem;
-    font-size: 0.75rem;
+    font-size: 0.5rem;
 }
 
 .navLeft a {
@@ -72,7 +67,7 @@ header {
     background-color: red;
     position: relative;
     left: -10px;
-    top: -5px;
+    top: -1px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -86,19 +81,19 @@ h4 {
     margin-left: 20px;
     margin-top: 30px;
     font-family: var(--ff-primary);
-    font-size: 1.125rem;
+    font-size: 13px;
 }
 
 h2 {
     margin-top: 20px;
     padding-top: 20px;
     font-family: var(--ff-primary);
-    font-size: 1.5rem;
+    font-size: 18px;
 }
 
 p {
     font-family: var(--ff-primary);
-    font-size: 1rem;
+    font-size: 13px;
     font-weight: 500;
 }
 
@@ -106,6 +101,14 @@ div {
     align-content: center;
     text-align: center;
 }
+
+
+.loggedInUser p {
+    font-size: 10px;
+    margin-right: 2rem;
+    color: var(--clr-light);
+}
+
 
 .container {
     display: flex;
