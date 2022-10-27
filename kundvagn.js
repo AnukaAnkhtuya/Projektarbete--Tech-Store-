@@ -62,8 +62,9 @@ function addProductsToWebpage() {
         cartItemPrice.innerText = selectedItem.price + " " + " " + "SEK";
         deleteButton.innerHTML = "Delete item";
 
-        cartItemDiv.appendChild(cartItemTitle);
+      
         cartItemDiv.appendChild(cartItemImg);
+        cartItemDiv.appendChild(cartItemTitle);
         cartItemDiv.appendChild(cartItemPrice);
         cartItemDiv.appendChild(deleteButton);
 
