@@ -1,5 +1,35 @@
 [
     {
+        "title": "Iphone 14 Pro Max",
+        "description": "Both bigger and better. One of Apple's latest releases - the iPhone 14 Pro Max.",
+        "image": "iphone14promax.png",
+        "price": 16490
+    },{
+        "title": "Iphone 14",
+        "description": "A magical new way to interact with iPhone.",
+        "image": "iphone14.png",
+        "price": 11995 
+    },{
+        "title": "Samsung Galaxy Z Fold4",
+        "description": "The ability to transform a smartphone into a small tablet creates new possibilities.",
+        "image": "galaxyzfold4.png",
+        "price": 21990
+    },{
+        "title": "Samsung Galaxy Z Flip4",
+        "description": "A mobile for those who want to look trendy or who like the practical advantages of a smartphone that folds in half.",
+        "image": "galaxyflip4.png",
+        "price": 11995
+    },{
+        "title": "Samsung Galaxy S22 Ultra",
+        "description": "Pushes productivity, power, and photography to the utmost to satisfy those seeking a premium experience.",
+        "image": "galaxys22ultra.png",
+        "price": 14990
+    },{
+        "title": "Iphone 13",
+        "description": "iPhone 13 from Apple - as amazing as ever",
+        "image": "iphone13.png",
+        "price": 10799
+    },{
         "title": "iPhone X",
         "description": "Last years phone from Apple with a beautiful all display front.",
         "image": "iPhoneX.png",
