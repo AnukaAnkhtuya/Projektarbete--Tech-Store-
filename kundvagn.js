@@ -126,7 +126,6 @@ function deleteItem(title) {
     var jsonString = JSON.stringify(cart);
     localStorage.setItem("doList", jsonString);
     addProductsToWebpage();
-
 }
 
 function getTotalPrice (totalPrice) {
@@ -150,80 +149,27 @@ function checkOut() {
     if (confirm("Vill du slutföra ditt köp?")) {
         var cart = getCart();
         if(localStorage.getItem("loggedInUser")){
-
             let loggedInUser = localStorage.getItem("loggedInUser");
-            
             let fromdoList = JSON.parse(localStorage.getItem("doList"));
-            
             /*
             console.log(cart[0].title) //Kör cart[i] och loopa i lengh
             console.log(cart[0].description)
             console.log(cart[0].image)
             console.log(cart[0].price)
-            */
-            
+            */ // - Behövdes inte, men kan användas för att köra koden snyggare. 
             if(!localStorage.getItem(loggedInUser)){
                 localStorage.setItem(loggedInUser, JSON.stringify(fromdoList)); //Spara kundvagnen som användarnamn(temp)
             } else {
-
-            let fromUser = JSON.parse(localStorage.getItem(loggedInUser));
-            //fromUser är en array med objekt ifrån tidigare köp. (Hämta tidigare ordrar)
-            
-            fromUser.push(fromdoList);
-            
-            localStorage.setItem(loggedInUser, JSON.stringify(fromUser));
-            //Ladda upp uppdaterad lista med inköpta varor
-
+                let fromUser = JSON.parse(localStorage.getItem(loggedInUser));
+                //fromUser är en array med objekt ifrån tidigare köp. (Hämta tidigare ordrar)
+                fromUser.push(fromdoList); //Lägga till nya varor till historiken
+                localStorage.setItem(loggedInUser, JSON.stringify(fromUser)); //Ladda upp uppdaterad lista med inköpta varor
             }
-
-            
-
-            
-            
-
             localStorage.removeItem("doList");
-
-            //Render tom Kundvagn
-            
-            addProductsToWebpage()
-            
-            
-
+            addProductsToWebpage() //Rendera tom varukorg. 
         }
-        
-        //if(getCurrentUser() !=null) {
-            //addToUser(cart);
-        //}
-        /*
-        cart.splice(0, cart.length);
-        var jsonString = JSON.stringify(cart);
-        localStorage.doList = jsonString;
-        console.log("ditt köpt är genomfört");
-        addProductsToWebpage();
-        */
     }
-    /*
-    function addToUser (cart) {
-        var addToCurrentUser;
-        var users = getCurrentUser();
-        users.forEach(user => {
-            if (
-                user.userName == getCurrentUser().userName &&
-                user.password == getCurrentUser().password   
-            ) 
-            {
-                addToCurrentUser = user;
-                var order = {
-                    items: cart
-                };
-                user.order.push(order);
-                localStorage.setItem("Current User", JSON.stringify(user));
-                localStorage.setItem ("loggedInUser", JSON.stringify(users))
-            }
-            
-        });
-
-    } */
+   
     cart.splice(0, cart.length);
 }
 
@@ -231,7 +177,6 @@ function checkOut() {
 // === Script for showing login-form ===
 userButton.addEventListener("click", showLoginForm);
 userBtn.addEventListener("click", showLoginForm());
-
 
 function showLoginForm() {
     console.log("click");
@@ -256,7 +201,6 @@ function showLoginForm() {
             createPassword.style.display = "none";
             btnSaveNewUser.style.display = "none";
             
-
             login();
         } else {
             square.style.display = "none";
@@ -280,7 +224,6 @@ function logoutForm() {
     } else {
         square.style.display = "none";
     }
-    //console.log("Visa utloggning")
 }
 
 // == END == Script for login-form == END ==
@@ -334,13 +277,6 @@ function saveNewUser(){
             
             }
 }
-/*
-btnCancel.addEventListener("click", (e) => {
-    square.style.display = "none";
-    inputUsername.value = "";
-    inputPassword.value = "";
-});
-*/
 
 function initDefaultUsers() {
     defUserList = [
@@ -351,6 +287,10 @@ function initDefaultUsers() {
         {
             userName: "Grupp2",
             password: "555"
+        },
+        {
+            userName: "a",
+            password: "a"
         }
     ];
     tempUserList = (localStorage.getItem("users",));
@@ -376,7 +316,7 @@ function login() {
             inputPassword.value = "";
             errorCode("Wrong username or password. Try again.");
         } else {
-            //logInFail();
+
             console.log("Användarnamnet finns inte");
             errorCode("Username doesn´t exist. Try again.")
         }
@@ -386,8 +326,7 @@ function login() {
 function logOut() {
     logOutBtn.addEventListener("click", (e) => {
         localStorage.removeItem("loggedInUser");
-        //loginForm.style.display="block";
-        //logoutBtn.style.display="none";
+
         square.style.display = "none";
         pWelcome.innerText = "";
     })
