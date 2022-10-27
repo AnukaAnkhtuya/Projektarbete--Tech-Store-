@@ -78,8 +78,8 @@ header {
 
 .user,
 .cart {
-    padding: 5px;
-    font-size: 1rem;
+    padding: 4px;
+    font-size: 1.125rem;
     cursor: pointer;
 
 }
@@ -89,18 +89,15 @@ header {
     transform: scale(0.97);
 }
 
-.navRight a{
+.navRight a,
+.navLeft a{
     color: var(--clr-light);
+    text-decoration: none;
 }
 
 .navLeft {
     font-family: var(--ff-primary);
     margin: 2rem;
-}
-
-.navLeft a {
-    text-decoration: none;
-    color: var(--clr-light);
 }
 
 .cartItems {
@@ -109,7 +106,7 @@ header {
     background-color: red;
     position: relative;
     left: -10px;
-    top: -5px;
+    top: -8px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -119,7 +116,7 @@ header {
     margin-top: 10px;
 }
 
-.pWelcome {
+.loggedInUser {
     margin-right: 15px;
 
 }
