@@ -5,6 +5,7 @@ var tempUserList;
 
 const navRight = document.querySelector(".navRight");
 const userBtn = document.querySelector(".user");
+const userButton = document.getElementById("userBtn");
 const btnBack = document.querySelector(".btnBack");
 const square = document.querySelector(".square");
 const btnCancel = document.querySelector(".btnCancelLogIn");
@@ -115,9 +116,9 @@ function counter() {
 }
 
 // === Script for showing login-form ===
-console.log(userBtn)
+userButton.addEventListener("click", showLoginForm);
+userBtn.addEventListener("click", showLoginForm());
 
-userBtn.addEventListener("click", showLoginForm);
 
 function showLoginForm() {
     errormessage.style.display="none";
