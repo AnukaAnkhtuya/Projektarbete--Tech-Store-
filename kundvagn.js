@@ -80,7 +80,7 @@ function addProductsToWebpage() {
 
     var checkOutButton = document.createElement("button");
     checkOutButton.classList = "checkOutButton";
-    checkOutButton.innerHTML = "Confirm order";
+    checkOutButton.innerHTML = "Bekräfta order";
     checkOutDiv.appendChild(checkOutButton);
     checkOutButton.onclick = function() {
         checkOut()
@@ -104,11 +104,11 @@ function getTotalPrice (totalPrice) {
     text.classList = "totalPriceText";
 
     if (getCart() && getCart().length) {
-        text.innerText = "Total price:" + " " + " " + totalPrice + " " + "SEK";
+        text.innerText = "Total price: " + " " + " " + totalPrice + " " + "Kr";
         priceContainer.appendChild(text);
         return priceContainer;
     } else {
-        text.innerText = "Cart is empty."
+        text.innerText = "Varukorgen är tom."
         priceContainer.appendChild(text);
         return priceContainer;
     }

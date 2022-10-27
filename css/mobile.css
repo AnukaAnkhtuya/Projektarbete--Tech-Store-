@@ -146,8 +146,8 @@ div {
     position: fixed;
     top: 8%;
     right: 2%;
-    width: 350px;
-    height: 250px;
+    width: 300px;
+    height: 200px;
     background-color: rgba(255, 255, 255, 0.90);
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.074);
     border: 3px solid rgba(169, 169, 169, 0.081);
@@ -343,3 +343,4 @@ div {
     font-size: 0.75rem;
     cursor: pointer;
 }
+
