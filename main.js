@@ -23,7 +23,6 @@ const btnSaveNewUser = document.querySelector(".btnSaveNewUser");
 
 const errorMessage = document.querySelector(".errorMessage-text");
 
-//console.log(logInBtn)
 
 /** Get products from the json file and store it in a gobal variable */
 function loadProducts() {
@@ -130,7 +129,7 @@ function showLoginForm() {
         if (square.style.display === "none") {
             square.style.display = "block";
             logOutBtn.style.display = "none";
-            btnBack.style.display ="none";
+            btnBack.style.display = "none";
             inputUsername.style.display = "block";
             inputPassword.style.display = "block";
             logInBtn.style.display = "block";
@@ -152,6 +151,7 @@ function logoutForm() {
         square.style.display = "block";
         inputUsername.style.display = "none";
         inputPassword.style.display = "none";
+        btnBack.style.display = "none";
         logInBtn.style.display = "none";
         logOutBtn.style.display = "block";
         btnCreateUser.style.display = "none";
@@ -162,7 +162,7 @@ function logoutForm() {
     } else {
         square.style.display = "none";
     }
-    console.log("Visa utloggning")
+    //console.log("Visa utloggning")
 }
 
 // == END == Script for login-form == END ==
@@ -288,7 +288,7 @@ function logInUser(username) {
 function anyoneHome() {
     if (localStorage.getItem("loggedInUser")) {
         loggedInUser = localStorage.getItem("loggedInUser")
-        pWelcome.innerText = ("Välkommen tillbaka, " + loggedInUser + "!");
+        pWelcome.innerText = (loggedInUser);
     }
 };
 
