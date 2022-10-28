@@ -93,8 +93,8 @@ function addProductsToWebpage() {
         cartItemPrice.innerText = selectedItem.price + " " + " " + " :-";
         deleteButton.innerHTML = "Ta bort";
 
-        cartItemDiv.appendChild(cartItemTitle);
         cartItemDiv.appendChild(cartItemImg);
+        cartItemDiv.appendChild(cartItemTitle);
         cartItemDiv.appendChild(cartItemPrice);
         cartItemDiv.appendChild(deleteButton);
 
