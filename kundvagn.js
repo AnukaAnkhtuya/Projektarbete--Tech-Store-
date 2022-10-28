@@ -59,7 +59,7 @@ function addProductsToWebpage() {
     cartTitle.classList = "cartTitle"
     cartContent.appendChild(cartTitleDiv);
     cartTitleDiv.appendChild(cartTitle);
-    cartTitle.innerHTML = "Kundvagn";
+    cartTitle.innerHTML = "Varukorg";
 
     var totalPrice = 0;
     var cartContainer = document.createElement("div");
@@ -90,8 +90,8 @@ function addProductsToWebpage() {
 
         cartItemTitle.innerText = selectedItem.title;
         cartItemImg.innerText = selectedItem.image;
-        cartItemPrice.innerText = selectedItem.price + " " + " " + "SEK";
-        deleteButton.innerHTML = "Delete item";
+        cartItemPrice.innerText = selectedItem.price + " " + " " + " :-";
+        deleteButton.innerHTML = "Ta bort";
 
         cartItemDiv.appendChild(cartItemTitle);
         cartItemDiv.appendChild(cartItemImg);
@@ -111,7 +111,7 @@ function addProductsToWebpage() {
 
     var checkOutButton = document.createElement("button");
     checkOutButton.classList = "checkOutButton";
-    checkOutButton.innerHTML = "Confirm order";
+    checkOutButton.innerHTML = "Bekräfta order";
     checkOutDiv.appendChild(checkOutButton);
     checkOutButton.onclick = function() {
         checkOut()
@@ -134,11 +134,11 @@ function getTotalPrice (totalPrice) {
     text.classList = "totalPriceText";
 
     if (getCart() && getCart().length) {
-        text.innerText = "Total price:" + " " + " " + totalPrice + " " + "SEK";
+        text.innerText = "Total pris:" + " " + " " + totalPrice + " " + " :-";
         priceContainer.appendChild(text);
         return priceContainer;
     } else {
-        text.innerText = "Cart is empty."
+        text.innerText = "Varukorgen är tom."
         priceContainer.appendChild(text);
         return priceContainer;
     }
