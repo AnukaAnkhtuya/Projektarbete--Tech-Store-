@@ -140,7 +140,7 @@ function showLoginForm() {
             btnOrderHistory.style.display =" none";
             
 
-            login();
+            //login();
         } else {
             square.style.display = "none";
         }
@@ -250,6 +250,7 @@ function initDefaultUsers() {
 };
 
 
+/*
 function login() {
     logInBtn.addEventListener("click", function () {
         let obj = userList.find(o => o.userName === inputUsername.value)
@@ -271,6 +272,7 @@ function login() {
     });
 
 };
+*/
 function logOut() {
     logOutBtn.addEventListener("click", (e) => {
         localStorage.removeItem("loggedInUser");
