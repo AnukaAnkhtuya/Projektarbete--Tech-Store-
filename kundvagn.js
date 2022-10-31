@@ -22,11 +22,6 @@ const errorMessage = document.querySelector(".errorMessage-text");
 
 
 //SLUT AV INKLISTRAT SKIT
-
-
-
-
-
 function getCart() {
     return JSON.parse(localStorage.getItem('doList')) || [];
 }
@@ -105,17 +100,22 @@ function addProductsToWebpage() {
     let totalPriceContainer = getTotalPrice(totalPrice);
     cartContent.appendChild(totalPriceContainer);
 
-        var checkOutDiv = document.createElement("div");
-        checkOutDiv.classList = "checkOutDiv";
-        cartContent.appendChild(checkOutDiv);
+    let checkOutDiv = document.createElement("div");
+    checkOutDiv.classList = "checkOutDiv";
+    cartContent.appendChild(checkOutDiv);
 
-    var checkOutButton = document.createElement("button");
+    let checkOutButton = document.createElement("button");
     checkOutButton.classList = "checkOutButton";
     checkOutButton.innerHTML = "Bekräfta order";
     checkOutDiv.appendChild(checkOutButton);
     checkOutButton.onclick = function() {
         checkOut()
     };
+
+    if (totalPrice < 1) {
+        checkOutButton.style.display = "none";
+    }
+
 }
 
 function deleteItem(title) {
