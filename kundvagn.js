@@ -51,10 +51,14 @@ function addProductsToWebpage() {
     let cartTitleDiv = document.createElement("div");
     cartTitleDiv.classList = "cartTitleDiv";
     let cartTitle = document.createElement("h1");
-    cartTitle.classList = "cartTitle"
+    let cartTitleIcon = document.createElement("h1");
+    cartTitleIcon.classList = "cartTitleIcon";
+    cartTitle.classList = "cartTitle";
+    cartTitleIcon.innerHTML = ' <i class="fa-solid fa-cart-shopping"></i> ';
+    cartTitle.innerHTML = " Varukorg";
     cartContent.appendChild(cartTitleDiv);
+    cartTitleDiv.appendChild(cartTitleIcon);
     cartTitleDiv.appendChild(cartTitle);
-    cartTitle.innerHTML = "Varukorg";
 
     var totalPrice = 0;
     var cartContainer = document.createElement("div");
@@ -76,8 +80,11 @@ function addProductsToWebpage() {
         cartItemTitle.classList = "cartItemTitle";
         let cartItemPrice = document.createElement("h4");
         cartItemPrice.classList = "cartItemPrice";
+
         let deleteButton = document.createElement("button");
-        deleteButton.classList = "deleteButton";
+        let deleteButtonOutput = document.createElement("p");
+         deleteButton.classList = "deleteButton";
+         deleteButtonOutput.classList = "deleteButtonOutput";
 
         deleteButton.onclick = function () {
             deleteItem();
@@ -86,7 +93,8 @@ function addProductsToWebpage() {
         cartItemTitle.innerText = selectedItem.title;
         cartItemImg.innerText = selectedItem.image;
         cartItemPrice.innerText = selectedItem.price + " " + " " + " :-";
-        deleteButton.innerHTML = "Ta bort";
+        deleteButtonOutput.innerHTML = ' <i class="fa-solid fa-trash"> </i>' + " Ta bort";
+        deleteButton.appendChild(deleteButtonOutput);
 
         cartItemDiv.appendChild(cartItemImg);
         cartItemDiv.appendChild(cartItemTitle);
