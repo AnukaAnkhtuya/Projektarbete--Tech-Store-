@@ -169,7 +169,10 @@ function createUser(){
     logOutBtn.style.display = "none";
     btnCreateUser.style.display = "none";
     btnSaveNewUser.style.display = "block";
-    btnSaveNewUser.addEventListener("click", saveNewUser);
+    btnSaveNewUser.addEventListener("click", () => {
+        saveNewUser();
+        switchForm();
+    });
 }
 function switchForm(){
     square.style.display = "block";
