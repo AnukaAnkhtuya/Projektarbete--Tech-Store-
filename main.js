@@ -142,9 +142,7 @@ function showLoginForm() {
             createUsername.style.display = "none";
             createPassword.style.display = "none";
             btnSaveNewUser.style.display = "none";
-            btnOrderHistory.style.display =" none";
             
-
             login();
         } else {
             square.style.display = "none";
@@ -165,7 +163,6 @@ function logoutForm() {
         createUsername.style.display = "none";
         createPassword.style.display = "none";
         btnSaveNewUser.style.display = "none";
-        btnOrderHistory.style.display = "block";
         logOut();
     } else {
         square.style.display = "none";
