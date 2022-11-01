@@ -218,7 +218,7 @@ function saveNewUser(){
             localStorage.setItem("users", JSON.stringify(userList));
             userList = JSON.parse(localStorage.getItem("users", ));
             errorCode();
-            errorCode("The account: " + createUsername.value + " was created.");
+            errorCodeTwo("Kontot: " + createUsername.value + " har skapats.");
             createUsername.value=("");
             createPassword.value=("");
             
@@ -237,14 +237,6 @@ function initDefaultUsers() {
         {
             userName: "Fredrik",
             password: "12345"
-        },
-        {
-            userName: "Grupp2",
-            password: "555"
-        },
-        {
-            userName: "a",
-            password: "a"
         }
     ];
     tempUserList = (localStorage.getItem("users",));

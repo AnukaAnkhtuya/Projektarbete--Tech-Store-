@@ -232,14 +232,6 @@ function initDefaultUsers() {
         {
             userName: "Fredrik",
             password: "12345"
-        },
-        {
-            userName: "Grupp2",
-            password: "555"
-        },
-        {
-            userName: "a",
-            password: "a"
         }
     ];
     tempUserList = (localStorage.getItem("users",));
