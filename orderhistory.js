@@ -1,7 +1,4 @@
-var listOfProducts;
-var inCart = [];
-
-var tempUserList;
+//INKLISTRAT SKIT
 
 const navRight = document.querySelector(".navRight");
 const userBtn = document.querySelector(".user");
@@ -16,7 +13,6 @@ const createPassword = document.querySelector(".createPassword");
 const logInBtn = document.querySelector(".btnLogIn");
 const logOutBtn = document.querySelector(".btnLogOut");
 const pWelcome = document.querySelector(".pWelcome");
-const myOrdersBtn = document.querySelector(".myOrders");
 
 const errormessage = document.querySelector(".errorMessage-text");
 const btnCreateUser = document.querySelector(".btnCreateUser");
@@ -25,116 +21,178 @@ const btnSaveNewUser = document.querySelector(".btnSaveNewUser");
 const errorMessage = document.querySelector(".errorMessage-text");
 
 
-/** Get products from the json file and store it in a gobal variable */
-function loadProducts() {
-    fetch("./products.json")
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (products) {
-            listOfProducts = products;
-            addProductsToWebpage();
-        });
+//SLUT AV INKLISTRAT SKIT
+
+
+
+
+
+function getCart() {
+    return JSON.parse(localStorage.getItem('doList')) || [];
 }
+
+function getUsers() {
+    return JSON.parse(localStorage.getItem('users'));
+}
+
+function getCurrentUser() {
+    return JSON.parse(localStorage.getItem('loggedInUser'));
+}
+
+var emptyCart = [];
+
 function initSite() {
-
-    initDefaultUsers();
-    loadProducts();
-    let itemCart = localStorage.doList;
-    if (itemCart) {
-        inCart = JSON.parse(itemCart);
-    }
-    document.getElementById("itemCounter").innerHTML = inCart.length;
+    addProductsToWebpage();
     anyoneHome();
+    initDefaultUsers();
 }
 
 
-/** Uses the loaded products data to create a visible product list on the website */
 function addProductsToWebpage() {
-    let main = document.getElementsByTagName("main")[0];
-    let mainContainer = document.createElement("div");
-    mainContainer.classList = "container";
-    main.appendChild(mainContainer);
+    document.getElementById("itemCounter").innerHTML = getCart().length;
+    var cartContent = document.querySelector(".cartContent");
+    cartContent.innerHTML = ""; 
 
-    for (let i = 0; i < listOfProducts.length; i++) {
-        let selectedItem = listOfProducts[i];
+    let cartTitleDiv = document.createElement("div");
+    cartTitleDiv.classList = "cartTitleDiv";
+    let cartTitle = document.createElement("h1");
+    cartTitle.classList = "cartTitle"
+    cartContent.appendChild(cartTitleDiv);
+    cartTitleDiv.appendChild(cartTitle);
+    cartTitle.innerHTML = "Varukorg";
 
-        let itemCard = document.createElement("div");
-        itemCard.classList = "itemCardDiv";
-        let itemCardInfo = document.createElement("div");
-        itemCardInfo.classList = "itemInfo"
+    var totalPrice = 0;
+    var cartContainer = document.createElement("div");
+    cartContainer.classList = "cartContainer";
+    cartContent.appendChild(cartContainer);
 
-        let itemTitle = document.createElement("h2");
-        let itemText = document.createElement("p");
-        let itemImg = document.createElement("img");
-        itemImg.classList = "itemImage";
-        itemImg.setAttribute("src", "/assets/" + selectedItem.image); //eftersom bilderna ej ligger i root-mappen
-        let itemPrice = document.createElement("h4");
+    for (let i = 0; i < getCart().length; i++) {
+        var selectedItem = getCart()[i];
+        totalPrice += selectedItem.price;
 
-        let itemBtn = document.createElement("button");
-        let itemBtnText = document.createElement("p");
-        itemBtn.appendChild(itemBtnText);
-        itemBtn.classList = "addItemBtn";
-        itemBtn.name = selectedItem.title;
-        itemBtn.onclick = function () {
-            addToCart(this.name);
-        };
+        let cartItemDiv = document.createElement("div");
+        cartItemDiv.classList = "cartItemDiv";
 
+        let cartItemImg = document.createElement("img");
+        cartItemImg.classList = "cartItemImg";
+        cartItemImg.setAttribute("src", "./assets/" + selectedItem.image);
 
-        itemTitle.innerText = selectedItem.title;
-        itemText.innerText = selectedItem.description;
-        itemImg.innerText = selectedItem.image;
-        itemPrice.innerText = selectedItem.price + " :-";
-        itemBtnText.innerHTML = '<i class="fa-solid fa-cart-shopping"></i>' + " Lägg i varukorg";
-        itemBtnText.classList = "itemBtnText";
+        let cartItemTitle = document.createElement("h1");
+        cartItemTitle.classList = "cartItemTitle";
+        let cartItemPrice = document.createElement("h4");
+        cartItemPrice.classList = "cartItemPrice";
+        let deleteButton = document.createElement("button");
+        deleteButton.classList = "deleteButton";
 
-        itemCardInfo.appendChild(itemTitle);
-        itemCardInfo.appendChild(itemText);
-        itemCardInfo.appendChild(itemImg);
-        itemCardInfo.appendChild(itemPrice);
-        itemCardInfo.appendChild(itemBtn);
+        deleteButton.onclick = function () {
+            deleteItem();
+        }
 
-        itemCard.appendChild(itemCardInfo);
-        mainContainer.appendChild(itemCard);
+        cartItemTitle.innerText = selectedItem.title;
+        cartItemImg.innerText = selectedItem.image;
+        cartItemPrice.innerText = selectedItem.price + " " + " " + " :-";
+        deleteButton.innerHTML = "Ta bort";
+
+        cartItemDiv.appendChild(cartItemImg);
+        cartItemDiv.appendChild(cartItemTitle);
+        cartItemDiv.appendChild(cartItemPrice);
+        cartItemDiv.appendChild(deleteButton);
+
+        cartContainer.appendChild(cartItemDiv);   
+
     }
+    
+    let totalPriceContainer = getTotalPrice(totalPrice);
+    cartContent.appendChild(totalPriceContainer);
+
+        var checkOutDiv = document.createElement("div");
+        checkOutDiv.classList = "checkOutDiv";
+        cartContent.appendChild(checkOutDiv);
+
+    var checkOutButton = document.createElement("button");
+    checkOutButton.classList = "checkOutButton";
+    checkOutButton.innerHTML = "Bekräfta order";
+    checkOutDiv.appendChild(checkOutButton);
+    checkOutButton.onclick = function() {
+        checkOut()
+    };
 }
 
-function addToCart(title) {
-    let itemToAdd = title;
+function deleteItem(title) {
+    var cart = getCart();
+    var itemName = title;
 
-    for (let i = 0; i < listOfProducts.length; i++) {
-        if (itemToAdd == listOfProducts[i].title) {
-            inCart.push(listOfProducts[i]);
-            let jsonString = JSON.stringify(inCart);
-            localStorage.doList = jsonString;
+    cart.splice(itemName, 1);
+    var jsonString = JSON.stringify(cart);
+    localStorage.setItem("doList", jsonString);
+    addProductsToWebpage();
+}
 
-            counter();
+function getTotalPrice (totalPrice) {
+    let priceContainer = document.createElement("div");
+    let text = document.createElement("p");
+    text.classList = "totalPriceText";
 
+    if (getCart() && getCart().length) {
+        text.innerText = "Total pris:" + " " + " " + totalPrice + " " + " :-";
+        priceContainer.appendChild(text);
+        return priceContainer;
+    } else {
+        text.innerText = "Varukorgen är tom."
+        priceContainer.appendChild(text);
+        return priceContainer;
+    }
+
+}
+
+function checkOut() {
+    if (confirm("Vill du slutföra ditt köp?")) {
+        var cart = getCart();
+        if(localStorage.getItem("loggedInUser")){
+            let loggedInUser = localStorage.getItem("loggedInUser");
+            let fromdoList = JSON.parse(localStorage.getItem("doList"));
+            /*
+            console.log(cart[0].title) //Kör cart[i] och loopa i lengh
+            console.log(cart[0].description)
+            console.log(cart[0].image)
+            console.log(cart[0].price)
+            */ // - Behövdes inte, men kan användas för att köra koden snyggare. 
+            if(!localStorage.getItem(loggedInUser)){
+                localStorage.setItem(loggedInUser, JSON.stringify(fromdoList)); //Spara kundvagnen som användarnamn(temp)
+            } else {
+                let fromUser = JSON.parse(localStorage.getItem(loggedInUser));
+                //fromUser är en array med objekt ifrån tidigare köp. (Hämta tidigare ordrar)
+                fromUser.push(fromdoList); //Lägga till nya varor till historiken
+                localStorage.setItem(loggedInUser, JSON.stringify(fromUser)); //Ladda upp uppdaterad lista med inköpta varor
+            }
+            localStorage.removeItem("doList");
+            addProductsToWebpage() //Rendera tom varukorg. 
         }
     }
+   
+    cart.splice(0, cart.length);
 }
 
-function counter() {
-    document.getElementById("itemCounter").innerHTML = inCart.length;
-}
-
+// INKLISTRAT SKIT IFRÅN cartContent.JS
 // === Script for showing login-form ===
 userButton.addEventListener("click", showLoginForm);
 userBtn.addEventListener("click", showLoginForm());
 
-
 function showLoginForm() {
+    console.log("click");
+    
     errormessage.style.display="none";
 
     
     if (localStorage.getItem("loggedInUser")) {
         logoutForm();
+        console.log("Visa LogUTForm")
     } else {
         if (square.style.display === "none") {
+            console.log("Visa LoginForm")
             square.style.display = "block";
             logOutBtn.style.display = "none";
-            myOrdersBtn.style.display = "none";
-            btnBack.style.display = "none";
+            btnBack.style.display ="none";
             inputUsername.style.display = "block";
             inputPassword.style.display = "block";
             logInBtn.style.display = "block";
@@ -142,9 +200,7 @@ function showLoginForm() {
             createUsername.style.display = "none";
             createPassword.style.display = "none";
             btnSaveNewUser.style.display = "none";
-            btnOrderHistory.style.display =" none";
             
-
             login();
         } else {
             square.style.display = "none";
@@ -157,24 +213,18 @@ function logoutForm() {
         square.style.display = "block";
         inputUsername.style.display = "none";
         inputPassword.style.display = "none";
-        btnBack.style.display = "none";
         logInBtn.style.display = "none";
         logOutBtn.style.display = "block";
-        myOrdersBtn.style.display = "block";
+        btnBack.style.display = "none";
         btnCreateUser.style.display = "none";
         createUsername.style.display = "none";
         createPassword.style.display = "none";
         btnSaveNewUser.style.display = "none";
-        btnOrderHistory.style.display = "block";
         logOut();
     } else {
         square.style.display = "none";
     }
-    //console.log("Visa utloggning")
 }
-
-myOrdersBtn.addEventListener("click", () => {
-    window.location.replace("orders.html")});
 
 // == END == Script for login-form == END ==
 
@@ -227,13 +277,6 @@ function saveNewUser(){
             
             }
 }
-/*
-btnCancel.addEventListener("click", (e) => {
-    square.style.display = "none";
-    inputUsername.value = "";
-    inputPassword.value = "";
-});
-*/
 
 function initDefaultUsers() {
     defUserList = [
@@ -273,7 +316,7 @@ function login() {
             inputPassword.value = "";
             errorCode("Wrong username or password. Try again.");
         } else {
-            //logInFail();
+
             console.log("Användarnamnet finns inte");
             errorCode("Username doesn´t exist. Try again.")
         }
@@ -283,8 +326,7 @@ function login() {
 function logOut() {
     logOutBtn.addEventListener("click", (e) => {
         localStorage.removeItem("loggedInUser");
-        //loginForm.style.display="block";
-        //logoutBtn.style.display="none";
+
         square.style.display = "none";
         pWelcome.innerText = "";
     })
@@ -306,11 +348,3 @@ function anyoneHome() {
         pWelcome.innerText = (loggedInUser);
     }
 };
-
-function errorCode(errorCode){
-    errormessage.style.display="block";
-    errormessage.textContent = errorCode;
-};
-
-
-
