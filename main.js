@@ -72,9 +72,7 @@ function addProductsToWebpage() {
         let itemPrice = document.createElement("h4");
 
         let itemBtn = document.createElement("button");
-        let itemBtnText = document.createElement("span");
-        let itemBtnIcon = document.createElement("span");
-        itemBtn.appendChild(itemBtnIcon);
+        let itemBtnText = document.createElement("p");
         itemBtn.appendChild(itemBtnText);
         itemBtn.classList = "addItemBtn";
         itemBtn.name = selectedItem.title;
@@ -87,8 +85,8 @@ function addProductsToWebpage() {
         itemText.innerText = selectedItem.description;
         itemImg.innerText = selectedItem.image;
         itemPrice.innerText = selectedItem.price + " :-";
-        itemBtnIcon.innerHTML = '<i class="fa-solid fa-cart-shopping"></i>';
-        itemBtnText.innerHTML = " Lägg i varukorg";
+        itemBtnText.innerHTML = '<i class="fa-solid fa-cart-shopping"></i>' + " Lägg i varukorg";
+        itemBtnText.classList = "itemBtnText";
 
         itemCardInfo.appendChild(itemTitle);
         itemCardInfo.appendChild(itemText);

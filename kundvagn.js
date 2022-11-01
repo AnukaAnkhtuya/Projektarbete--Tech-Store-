@@ -114,11 +114,14 @@ function addProductsToWebpage() {
     cartContent.appendChild(checkOutDiv);
 
     let checkOutButton = document.createElement("button");
+    let checkOutButtonText = document.createElement("p");
+    checkOutButtonText.classList = "checkOutButtonText"
     checkOutButton.classList = "checkOutButton";
-    checkOutButton.innerHTML = "Bekräfta order";
+    checkOutButtonText.innerHTML = '<i class="fa-solid fa-check"></i>' + " Bekräfta order";
+    checkOutButton.appendChild(checkOutButtonText)
     checkOutDiv.appendChild(checkOutButton);
     checkOutButton.onclick = function() {
-        checkOut()
+       controlCheckOut()
     };
 
     if (totalPrice < 1) {
@@ -152,6 +155,17 @@ function getTotalPrice (totalPrice) {
         return priceContainer;
     }
 
+}
+
+function controlCheckOut () {
+    if (!localStorage.getItem("loggedInUser")) {
+        showLoginForm();
+        errorCode(" Du måste vara inloggad för att bekräfta din order, vänligen logga in eller skapa ett konto!"); 
+
+        console.log("logga in!");
+    } else {
+        checkOut();
+    }
 }
 
 function checkOut() {
@@ -252,9 +266,13 @@ function createUser(){
     logOutBtn.style.display = "none";
     btnCreateUser.style.display = "none";
     btnSaveNewUser.style.display = "block";
-    btnSaveNewUser.addEventListener("click", saveNewUser);
+    btnSaveNewUser.addEventListener("click", () => {
+        saveNewUser();
+        switchForm();
+    });
 }
-function switchForm(){
+
+function switchForm() {
     square.style.display = "block";
     logOutBtn.style.display = "none";
     btnBack.style.display ="none";
@@ -280,10 +298,9 @@ function saveNewUser(){
             localStorage.setItem("users", JSON.stringify(userList));
             userList = JSON.parse(localStorage.getItem("users", ));
             errorCode();
-            errorCode("The account: " + createUsername.value + " was created.");
+            errorCodeTwo("Kontot: " + createUsername.value + " har skapats.");
             createUsername.value=("");
             createPassword.value=("");
-            
             }
 }
 
@@ -321,13 +338,10 @@ function login() {
                     return
                 }
             };
-            console.log("Felaktigt användarnamn eller lösenord");
             inputPassword.value = "";
-            errorCode("Wrong username or password. Try again.");
+            errorCode("Fel användarnamn eller lösenord, försök igen");
         } else {
-
-            console.log("Användarnamnet finns inte");
-            errorCode("Username doesn´t exist. Try again.")
+            errorCode("Användarnamnet finns inte")
         }
     });
 
@@ -356,4 +370,17 @@ function anyoneHome() {
         loggedInUser = localStorage.getItem("loggedInUser")
         pWelcome.innerText = (loggedInUser);
     }
+};
+
+function errorCode(errorCode){
+    errormessage.style.display="block";
+    errormessage.textContent = errorCode;
+    errormessage.style.color = "#ca484c";
+
+};
+
+function errorCodeTwo(errorCode){
+    errormessage.style.display="block";
+    errormessage.textContent = errorCode;
+    errormessage.style.color = "green";
 };
