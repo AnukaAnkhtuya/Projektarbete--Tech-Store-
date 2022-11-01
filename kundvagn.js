@@ -1,5 +1,3 @@
-//INKLISTRAT SKIT
-
 const navRight = document.querySelector(".navRight");
 const userBtn = document.querySelector(".user");
 const userButton = document.getElementById("userBtn");
@@ -22,7 +20,6 @@ const btnSaveNewUser = document.querySelector(".btnSaveNewUser");
 const errorMessage = document.querySelector(".errorMessage-text");
 
 
-//SLUT AV INKLISTRAT SKIT
 function getCart() {
     return JSON.parse(localStorage.getItem('doList')) || [];
 }
@@ -179,7 +176,6 @@ function checkOut() {
                 localStorage.setItem(loggedInUser, JSON.stringify(fromdoList)); //Spara kundvagnen som användarnamn(temp)
             } else {
                 let fromUser = JSON.parse(localStorage.getItem(loggedInUser));
-                //fromUser är en array med objekt ifrån tidigare köp. (Hämta tidigare ordrar)
                fromUser = fromUser.concat(fromdoList); //Lägga till nya varor till historiken
                 localStorage.setItem(loggedInUser, JSON.stringify(fromUser)); //Ladda upp uppdaterad lista med inköpta varor
             }
@@ -191,7 +187,6 @@ function checkOut() {
     cart.splice(0, cart.length);
 }
 
-// INKLISTRAT SKIT IFRÅN cartContent.JS
 // === Script for showing login-form ===
 userButton.addEventListener("click", showLoginForm);
 userBtn.addEventListener("click", showLoginForm());
@@ -313,9 +308,9 @@ function initDefaultUsers() {
     ];
     tempUserList = (localStorage.getItem("users",));
     if (!tempUserList) {
-        localStorage.setItem("users", JSON.stringify(defUserList)); //Ladda upp defUserList
+        localStorage.setItem("users", JSON.stringify(defUserList));
     }
-    tempUserList = JSON.parse(localStorage.getItem("users",)); //Ladda ner
+    tempUserList = JSON.parse(localStorage.getItem("users",));
     userList = tempUserList;
 };
 
