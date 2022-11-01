@@ -16,6 +16,7 @@ const createPassword = document.querySelector(".createPassword");
 const logInBtn = document.querySelector(".btnLogIn");
 const logOutBtn = document.querySelector(".btnLogOut");
 const pWelcome = document.querySelector(".pWelcome");
+const myOrdersBtn = document.querySelector(".myOrders");
 
 const errormessage = document.querySelector(".errorMessage-text");
 const btnCreateUser = document.querySelector(".btnCreateUser");
@@ -134,6 +135,7 @@ function showLoginForm() {
         if (square.style.display === "none") {
             square.style.display = "block";
             logOutBtn.style.display = "none";
+            myOrdersBtn.style.display = "none";
             btnBack.style.display = "none";
             inputUsername.style.display = "block";
             inputPassword.style.display = "block";
@@ -159,6 +161,7 @@ function logoutForm() {
         btnBack.style.display = "none";
         logInBtn.style.display = "none";
         logOutBtn.style.display = "block";
+        myOrdersBtn.style.display = "block";
         btnCreateUser.style.display = "none";
         createUsername.style.display = "none";
         createPassword.style.display = "none";
@@ -169,6 +172,9 @@ function logoutForm() {
     }
     //console.log("Visa utloggning")
 }
+
+myOrdersBtn.addEventListener("click", () => {
+    window.location.replace("orders.html")});
 
 // == END == Script for login-form == END ==
 

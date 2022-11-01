@@ -13,6 +13,7 @@ const createPassword = document.querySelector(".createPassword");
 const logInBtn = document.querySelector(".btnLogIn");
 const logOutBtn = document.querySelector(".btnLogOut");
 const pWelcome = document.querySelector(".pWelcome");
+const myOrdersBtn = document.querySelector(".myOrders");
 
 const errormessage = document.querySelector(".errorMessage-text");
 const btnCreateUser = document.querySelector(".btnCreateUser");
@@ -158,19 +159,14 @@ function checkOut() {
         var cart = getCart();
         if(localStorage.getItem("loggedInUser")){
             let loggedInUser = localStorage.getItem("loggedInUser");
-            let fromdoList = JSON.parse(localStorage.getItem("doList"));
-            /*
-            console.log(cart[0].title) //Kör cart[i] och loopa i lengh
-            console.log(cart[0].description)
-            console.log(cart[0].image)
-            console.log(cart[0].price)
-            */ // - Behövdes inte, men kan användas för att köra koden snyggare. 
+            let fromdoList = getCart();
+
             if(!localStorage.getItem(loggedInUser)){
                 localStorage.setItem(loggedInUser, JSON.stringify(fromdoList)); //Spara kundvagnen som användarnamn(temp)
             } else {
                 let fromUser = JSON.parse(localStorage.getItem(loggedInUser));
                 //fromUser är en array med objekt ifrån tidigare köp. (Hämta tidigare ordrar)
-                fromUser.push(fromdoList); //Lägga till nya varor till historiken
+               fromUser = fromUser.concat(fromdoList); //Lägga till nya varor till historiken
                 localStorage.setItem(loggedInUser, JSON.stringify(fromUser)); //Ladda upp uppdaterad lista med inköpta varor
             }
             localStorage.removeItem("doList");
@@ -200,6 +196,7 @@ function showLoginForm() {
             console.log("Visa LoginForm")
             square.style.display = "block";
             logOutBtn.style.display = "none";
+            myOrdersBtn.style.display= "none";
             btnBack.style.display ="none";
             inputUsername.style.display = "block";
             inputPassword.style.display = "block";
@@ -223,6 +220,7 @@ function logoutForm() {
         inputPassword.style.display = "none";
         logInBtn.style.display = "none";
         logOutBtn.style.display = "block";
+        myOrdersBtn.style.display = "block";
         btnBack.style.display = "none";
         btnCreateUser.style.display = "none";
         createUsername.style.display = "none";
@@ -233,6 +231,9 @@ function logoutForm() {
         square.style.display = "none";
     }
 }
+
+myOrdersBtn.addEventListener("click", () => {
+    window.location.replace("orders.html")});
 
 // == END == Script for login-form == END ==
 

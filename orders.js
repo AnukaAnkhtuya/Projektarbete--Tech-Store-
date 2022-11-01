@@ -1,5 +1,3 @@
-//INKLISTRAT SKIT
-
 const navRight = document.querySelector(".navRight");
 const userBtn = document.querySelector(".user");
 const userButton = document.getElementById("userBtn");
@@ -13,15 +11,13 @@ const createPassword = document.querySelector(".createPassword");
 const logInBtn = document.querySelector(".btnLogIn");
 const logOutBtn = document.querySelector(".btnLogOut");
 const pWelcome = document.querySelector(".pWelcome");
+const myOrdersBtn = document.querySelector(".myOrders");
 
 const errormessage = document.querySelector(".errorMessage-text");
 const btnCreateUser = document.querySelector(".btnCreateUser");
 const btnSaveNewUser = document.querySelector(".btnSaveNewUser");
-
 const errorMessage = document.querySelector(".errorMessage-text");
 
-
-//SLUT AV INKLISTRAT SKIT
 function getCart() {
     return JSON.parse(localStorage.getItem('doList')) || [];
 }
@@ -31,11 +27,11 @@ function getUsers() {
 }
 
 function getCurrentUser() {
-    return JSON.parse(localStorage.getItem('loggedInUser'));
+    return localStorage.getItem('loggedInUser');
 }
 
 function getOrders() {
-    loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    loggedInUser = localStorage.getItem("loggedInUser");
     return JSON.parse(localStorage.getItem(loggedInUser))  || [];
 }
 
@@ -67,28 +63,28 @@ function addProductsToWebpage() {
 
     var totalPrice = 0;
     var cartContainer = document.createElement("div");
-    cartContainer.classList = "cartContainer";
+    cartContainer.classList = "orderContainer";
     cartContent.appendChild(cartContainer);
 
-    for (let i = 0; i < getCart().length; i++) {
-        var selectedItem = getCart()[i];
+    for (let i = 0; i < getOrders().length; i++) {
+        var selectedItem = getOrders()[i];
         totalPrice += selectedItem.price;
 
         let cartItemDiv = document.createElement("div");
-        cartItemDiv.classList = "cartItemDiv";
+        cartItemDiv.classList = "orderItemDiv";
 
         let cartItemImg = document.createElement("img");
-        cartItemImg.classList = "cartItemImg";
+        cartItemImg.classList = "orderItemImg";
         cartItemImg.setAttribute("src", "./assets/" + selectedItem.image);
 
         let cartItemTitle = document.createElement("h1");
-        cartItemTitle.classList = "cartItemTitle";
+        cartItemTitle.classList = "orderItemTitle";
         let cartItemPrice = document.createElement("h4");
-        cartItemPrice.classList = "cartItemPrice";
+        cartItemPrice.classList = "orderItemPrice";
 
         cartItemTitle.innerText = selectedItem.title;
         cartItemImg.innerText = selectedItem.image;
-        cartItemPrice.innerText = selectedItem.price + " " + " " + " :-";
+        cartItemPrice.innerText = selectedItem.price + ":-";
 
         cartItemDiv.appendChild(cartItemImg);
         cartItemDiv.appendChild(cartItemTitle);
@@ -99,42 +95,18 @@ function addProductsToWebpage() {
     }
     
     let totalPriceContainer = getTotalPrice(totalPrice);
+    totalPriceContainer.classList = "pricecontainer";
     cartContent.appendChild(totalPriceContainer);
 
-    let checkOutDiv = document.createElement("div");
-    checkOutDiv.classList = "checkOutDiv";
-    cartContent.appendChild(checkOutDiv);
-
-    let checkOutButton = document.createElement("button");
-    checkOutButton.classList = "checkOutButton";
-    checkOutButton.innerHTML = "Bekräfta order";
-    checkOutDiv.appendChild(checkOutButton);
-    checkOutButton.onclick = function() {
-        checkOut()
-    };
-
-    if (totalPrice < 1) {
-        checkOutButton.style.display = "none";
-    }
-
 }
 
-function deleteItem(title) {
-    var cart = getCart();
-    var itemName = title;
 
-    cart.splice(itemName, 1);
-    var jsonString = JSON.stringify(cart);
-    localStorage.setItem("doList", jsonString);
-    addProductsToWebpage();
-}
-
-function getTotalPrice (totalPrice) {
+    function getTotalPrice (totalPrice) {
     let priceContainer = document.createElement("div");
     let text = document.createElement("p");
-    text.classList = "totalPriceText";
+    text.classList = "ordertotalPriceText";
 
-    if (getCart() && getCart().length) {
+    if (getOrders() && getOrders().length) {
         text.innerText = "Total pris:" + " " + " " + totalPrice + " " + " :-";
         priceContainer.appendChild(text);
         return priceContainer;
@@ -146,8 +118,6 @@ function getTotalPrice (totalPrice) {
 
 }
 
-
-// INKLISTRAT SKIT IFRÅN cartContent.JS
 // === Script for showing login-form ===
 userButton.addEventListener("click", showLoginForm);
 userBtn.addEventListener("click", showLoginForm());
@@ -166,6 +136,7 @@ function showLoginForm() {
             console.log("Visa LoginForm")
             square.style.display = "block";
             logOutBtn.style.display = "none";
+            myOrdersBtn.style.display = "none";
             btnBack.style.display ="none";
             inputUsername.style.display = "block";
             inputPassword.style.display = "block";
@@ -189,6 +160,7 @@ function logoutForm() {
         inputPassword.style.display = "none";
         logInBtn.style.display = "none";
         logOutBtn.style.display = "block";
+        myOrdersBtn.style.display = "block";
         btnBack.style.display = "none";
         btnCreateUser.style.display = "none";
         createUsername.style.display = "none";
@@ -199,6 +171,9 @@ function logoutForm() {
         square.style.display = "none";
     }
 }
+
+myOrdersBtn.addEventListener("click", () => {
+    window.location.replace("orders.html")});
 
 // == END == Script for login-form == END ==
 

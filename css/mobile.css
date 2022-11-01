@@ -370,3 +370,50 @@ div {
     cursor: pointer;
 }
 
+.orderContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 0fr));
+    justify-content: center;
+    }
+
+.orderItemDiv{
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    background-color: #efefef;
+    width: 150px;
+    justify-self: center;
+    max-height: 150px;
+    align-content: center;
+    }
+
+
+
+.orderItemImg{
+    max-height: 50px;
+}
+
+.orderItemTitle{
+    font-family: var(--ff-primary);
+    font-weight: 600;
+    font-size: 1rem; 
+}
+
+.orderItemPrice{
+    font-family: var(--ff-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    padding-right: 1rem;
+}
+
+.pricecontainer {
+    padding-bottom: 5rem;
+    padding-top: 0;
+}
+
+.ordertotalPriceText{
+    font-size: 1.1rem;
+    font-family: var(--ff-primary);
+    font-weight: 800;
+}
