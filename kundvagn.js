@@ -13,6 +13,7 @@ const createPassword = document.querySelector(".createPassword");
 const logInBtn = document.querySelector(".btnLogIn");
 const logOutBtn = document.querySelector(".btnLogOut");
 const pWelcome = document.querySelector(".pWelcome");
+const myOrdersBtn = document.querySelector(".myOrders");
 
 const errormessage = document.querySelector(".errorMessage-text");
 const btnCreateUser = document.querySelector(".btnCreateUser");
@@ -22,11 +23,6 @@ const errorMessage = document.querySelector(".errorMessage-text");
 
 
 //SLUT AV INKLISTRAT SKIT
-
-
-
-
-
 function getCart() {
     return JSON.parse(localStorage.getItem('doList')) || [];
 }
@@ -56,10 +52,14 @@ function addProductsToWebpage() {
     let cartTitleDiv = document.createElement("div");
     cartTitleDiv.classList = "cartTitleDiv";
     let cartTitle = document.createElement("h1");
-    cartTitle.classList = "cartTitle"
+    let cartTitleIcon = document.createElement("h1");
+    cartTitleIcon.classList = "cartTitleIcon";
+    cartTitle.classList = "cartTitle";
+    cartTitleIcon.innerHTML = ' <i class="fa-solid fa-cart-shopping"></i> ';
+    cartTitle.innerHTML = " Varukorg";
     cartContent.appendChild(cartTitleDiv);
+    cartTitleDiv.appendChild(cartTitleIcon);
     cartTitleDiv.appendChild(cartTitle);
-    cartTitle.innerHTML = "Varukorg";
 
     var totalPrice = 0;
     var cartContainer = document.createElement("div");
@@ -81,8 +81,11 @@ function addProductsToWebpage() {
         cartItemTitle.classList = "cartItemTitle";
         let cartItemPrice = document.createElement("h4");
         cartItemPrice.classList = "cartItemPrice";
+
         let deleteButton = document.createElement("button");
-        deleteButton.classList = "deleteButton";
+        let deleteButtonOutput = document.createElement("p");
+         deleteButton.classList = "deleteButton";
+         deleteButtonOutput.classList = "deleteButtonOutput";
 
         deleteButton.onclick = function () {
             deleteItem();
@@ -91,7 +94,8 @@ function addProductsToWebpage() {
         cartItemTitle.innerText = selectedItem.title;
         cartItemImg.innerText = selectedItem.image;
         cartItemPrice.innerText = selectedItem.price + " " + " " + " :-";
-        deleteButton.innerHTML = "Ta bort";
+        deleteButtonOutput.innerHTML = ' <i class="fa-solid fa-trash"> </i>' + " Ta bort";
+        deleteButton.appendChild(deleteButtonOutput);
 
         cartItemDiv.appendChild(cartItemImg);
         cartItemDiv.appendChild(cartItemTitle);
@@ -105,17 +109,25 @@ function addProductsToWebpage() {
     let totalPriceContainer = getTotalPrice(totalPrice);
     cartContent.appendChild(totalPriceContainer);
 
-        var checkOutDiv = document.createElement("div");
-        checkOutDiv.classList = "checkOutDiv";
-        cartContent.appendChild(checkOutDiv);
+    let checkOutDiv = document.createElement("div");
+    checkOutDiv.classList = "checkOutDiv";
+    cartContent.appendChild(checkOutDiv);
 
-    var checkOutButton = document.createElement("button");
+    let checkOutButton = document.createElement("button");
+    let checkOutButtonText = document.createElement("p");
+    checkOutButtonText.classList = "checkOutButtonText"
     checkOutButton.classList = "checkOutButton";
-    checkOutButton.innerHTML = "Bekräfta order";
+    checkOutButtonText.innerHTML = '<i class="fa-solid fa-check"></i>' + " Bekräfta order";
+    checkOutButton.appendChild(checkOutButtonText)
     checkOutDiv.appendChild(checkOutButton);
     checkOutButton.onclick = function() {
-        checkOut()
+       controlCheckOut()
     };
+
+    if (totalPrice < 1) {
+        checkOutButton.style.display = "none";
+    }
+
 }
 
 function deleteItem(title) {
@@ -145,24 +157,30 @@ function getTotalPrice (totalPrice) {
 
 }
 
+function controlCheckOut () {
+    if (!localStorage.getItem("loggedInUser")) {
+        showLoginForm();
+        errorCode(" Du måste vara inloggad för att bekräfta din order, vänligen logga in eller skapa ett konto!"); 
+
+        console.log("logga in!");
+    } else {
+        checkOut();
+    }
+}
+
 function checkOut() {
     if (confirm("Vill du slutföra ditt köp?")) {
         var cart = getCart();
         if(localStorage.getItem("loggedInUser")){
             let loggedInUser = localStorage.getItem("loggedInUser");
-            let fromdoList = JSON.parse(localStorage.getItem("doList"));
-            /*
-            console.log(cart[0].title) //Kör cart[i] och loopa i lengh
-            console.log(cart[0].description)
-            console.log(cart[0].image)
-            console.log(cart[0].price)
-            */ // - Behövdes inte, men kan användas för att köra koden snyggare. 
+            let fromdoList = getCart();
+
             if(!localStorage.getItem(loggedInUser)){
                 localStorage.setItem(loggedInUser, JSON.stringify(fromdoList)); //Spara kundvagnen som användarnamn(temp)
             } else {
                 let fromUser = JSON.parse(localStorage.getItem(loggedInUser));
                 //fromUser är en array med objekt ifrån tidigare köp. (Hämta tidigare ordrar)
-                fromUser.push(fromdoList); //Lägga till nya varor till historiken
+               fromUser = fromUser.concat(fromdoList); //Lägga till nya varor till historiken
                 localStorage.setItem(loggedInUser, JSON.stringify(fromUser)); //Ladda upp uppdaterad lista med inköpta varor
             }
             localStorage.removeItem("doList");
@@ -192,6 +210,7 @@ function showLoginForm() {
             console.log("Visa LoginForm")
             square.style.display = "block";
             logOutBtn.style.display = "none";
+            myOrdersBtn.style.display= "none";
             btnBack.style.display ="none";
             inputUsername.style.display = "block";
             inputPassword.style.display = "block";
@@ -215,6 +234,7 @@ function logoutForm() {
         inputPassword.style.display = "none";
         logInBtn.style.display = "none";
         logOutBtn.style.display = "block";
+        myOrdersBtn.style.display = "block";
         btnBack.style.display = "none";
         btnCreateUser.style.display = "none";
         createUsername.style.display = "none";
@@ -225,6 +245,9 @@ function logoutForm() {
         square.style.display = "none";
     }
 }
+
+myOrdersBtn.addEventListener("click", () => {
+    window.location.replace("orders.html")});
 
 // == END == Script for login-form == END ==
 
@@ -243,9 +266,13 @@ function createUser(){
     logOutBtn.style.display = "none";
     btnCreateUser.style.display = "none";
     btnSaveNewUser.style.display = "block";
-    btnSaveNewUser.addEventListener("click", saveNewUser);
+    btnSaveNewUser.addEventListener("click", () => {
+        saveNewUser();
+        switchForm();
+    });
 }
-function switchForm(){
+
+function switchForm() {
     square.style.display = "block";
     logOutBtn.style.display = "none";
     btnBack.style.display ="none";
@@ -271,10 +298,9 @@ function saveNewUser(){
             localStorage.setItem("users", JSON.stringify(userList));
             userList = JSON.parse(localStorage.getItem("users", ));
             errorCode();
-            errorCode("The account: " + createUsername.value + " was created.");
+            errorCodeTwo("Kontot: " + createUsername.value + " har skapats.");
             createUsername.value=("");
             createPassword.value=("");
-            
             }
 }
 
@@ -312,13 +338,10 @@ function login() {
                     return
                 }
             };
-            console.log("Felaktigt användarnamn eller lösenord");
             inputPassword.value = "";
-            errorCode("Wrong username or password. Try again.");
+            errorCode("Fel användarnamn eller lösenord, försök igen");
         } else {
-
-            console.log("Användarnamnet finns inte");
-            errorCode("Username doesn´t exist. Try again.")
+            errorCode("Användarnamnet finns inte")
         }
     });
 
@@ -347,4 +370,17 @@ function anyoneHome() {
         loggedInUser = localStorage.getItem("loggedInUser")
         pWelcome.innerText = (loggedInUser);
     }
+};
+
+function errorCode(errorCode){
+    errormessage.style.display="block";
+    errormessage.textContent = errorCode;
+    errormessage.style.color = "#ca484c";
+
+};
+
+function errorCodeTwo(errorCode){
+    errormessage.style.display="block";
+    errormessage.textContent = errorCode;
+    errormessage.style.color = "green";
 };
