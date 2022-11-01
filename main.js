@@ -309,5 +309,9 @@ function errorCode(errorCode){
     errormessage.textContent = errorCode;
 };
 
-
+function errorCodeTwo(errorCode){
+    errormessage.style.display="block";
+    errormessage.textContent = errorCode;
+    errormessage.style.color = "green";
+};
 
