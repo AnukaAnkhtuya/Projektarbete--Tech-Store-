@@ -48,7 +48,7 @@ function addProductsToWebpage() {
     main.appendChild(mainContainer);
 
     for (let i = 0; i < listOfProducts.length; i++) {
-        let selectedItem = listOfProducts[i];
+        var selectedItem = listOfProducts[i];
 
         let itemCard = document.createElement("div");
         itemCard.classList = "itemCardDiv";
