@@ -1,8 +1,6 @@
 var listOfProducts;
 var inCart = [];
-
 var tempUserList;
-
 const navRight = document.querySelector(".navRight");
 const userBtn = document.querySelector(".user");
 const userButton = document.getElementById("userBtn");
@@ -17,15 +15,11 @@ const logInBtn = document.querySelector(".btnLogIn");
 const logOutBtn = document.querySelector(".btnLogOut");
 const pWelcome = document.querySelector(".pWelcome");
 const myOrdersBtn = document.querySelector(".myOrders");
-
 const errormessage = document.querySelector(".errorMessage-text");
 const btnCreateUser = document.querySelector(".btnCreateUser");
 const btnSaveNewUser = document.querySelector(".btnSaveNewUser");
-
 const errorMessage = document.querySelector(".errorMessage-text");
 
-
-/** Get products from the json file and store it in a gobal variable */
 function loadProducts() {
     fetch("./products.json")
         .then(function (response) {
@@ -37,7 +31,6 @@ function loadProducts() {
         });
 }
 function initSite() {
-
     initDefaultUsers();
     loadProducts();
     let itemCart = localStorage.doList;
@@ -48,8 +41,6 @@ function initSite() {
     anyoneHome();
 }
 
-
-/** Uses the loaded products data to create a visible product list on the website */
 function addProductsToWebpage() {
     let main = document.getElementsByTagName("main")[0];
     let mainContainer = document.createElement("div");
@@ -68,7 +59,7 @@ function addProductsToWebpage() {
         let itemText = document.createElement("p");
         let itemImg = document.createElement("img");
         itemImg.classList = "itemImage";
-        itemImg.setAttribute("src", "/assets/" + selectedItem.image); //eftersom bilderna ej ligger i root-mappen
+        itemImg.setAttribute("src", "/assets/" + selectedItem.image); 
         let itemPrice = document.createElement("h4");
 
         let itemBtn = document.createElement("button");
@@ -79,7 +70,6 @@ function addProductsToWebpage() {
         itemBtn.onclick = function () {
             addToCart(this.name);
         };
-
 
         itemTitle.innerText = selectedItem.title;
         itemText.innerText = selectedItem.description;
@@ -101,15 +91,12 @@ function addProductsToWebpage() {
 
 function addToCart(title) {
     let itemToAdd = title;
-
     for (let i = 0; i < listOfProducts.length; i++) {
         if (itemToAdd == listOfProducts[i].title) {
             inCart.push(listOfProducts[i]);
             let jsonString = JSON.stringify(inCart);
             localStorage.doList = jsonString;
-
             counter();
-
         }
     }
 }
@@ -118,14 +105,11 @@ function counter() {
     document.getElementById("itemCounter").innerHTML = inCart.length;
 }
 
-// === Script for showing login-form ===
 userButton.addEventListener("click", showLoginForm);
 userBtn.addEventListener("click", showLoginForm());
 
-
 function showLoginForm() {
     errormessage.style.display="none";
-
     
     if (localStorage.getItem("loggedInUser")) {
         logoutForm();
@@ -142,7 +126,6 @@ function showLoginForm() {
             createUsername.style.display = "none";
             createPassword.style.display = "none";
             btnSaveNewUser.style.display = "none";
-            
             login();
         } else {
             square.style.display = "none";
@@ -167,17 +150,13 @@ function logoutForm() {
     } else {
         square.style.display = "none";
     }
-    //console.log("Visa utloggning")
 }
 
 myOrdersBtn.addEventListener("click", () => {
     window.location.replace("orders.html")});
 
-// == END == Script for login-form == END ==
-
 btnCreateUser.addEventListener("click", createUser);
 
-// == CREATE USER FORM ==
 function createUser(){
     square.style.display = "block";
     inputUsername.style.display = "none";
@@ -190,7 +169,10 @@ function createUser(){
     logOutBtn.style.display = "none";
     btnCreateUser.style.display = "none";
     btnSaveNewUser.style.display = "block";
-    btnSaveNewUser.addEventListener("click", saveNewUser);
+    btnSaveNewUser.addEventListener("click", () => {
+        saveNewUser();
+        switchForm();
+    });
 }
 function switchForm(){
     square.style.display = "block";
@@ -218,43 +200,27 @@ function saveNewUser(){
             localStorage.setItem("users", JSON.stringify(userList));
             userList = JSON.parse(localStorage.getItem("users", ));
             errorCode();
-            errorCode("The account: " + createUsername.value + " was created.");
+            errorCodeTwo("Kontot: " + createUsername.value + " har skapats.");
             createUsername.value=("");
             createPassword.value=("");
             
             }
 }
-/*
-btnCancel.addEventListener("click", (e) => {
-    square.style.display = "none";
-    inputUsername.value = "";
-    inputPassword.value = "";
-});
-*/
 
 function initDefaultUsers() {
     defUserList = [
         {
             userName: "Fredrik",
             password: "12345"
-        },
-        {
-            userName: "Grupp2",
-            password: "555"
-        },
-        {
-            userName: "a",
-            password: "a"
         }
     ];
     tempUserList = (localStorage.getItem("users",));
     if (!tempUserList) {
-        localStorage.setItem("users", JSON.stringify(defUserList)); //Ladda upp defUserList
+        localStorage.setItem("users", JSON.stringify(defUserList)); 
     }
-    tempUserList = JSON.parse(localStorage.getItem("users",)); //Ladda ner
+    tempUserList = JSON.parse(localStorage.getItem("users",)); 
     userList = tempUserList;
 };
-
 
 function login() {
     logInBtn.addEventListener("click", function () {
@@ -266,35 +232,27 @@ function login() {
                     return
                 }
             };
-            console.log("Felaktigt användarnamn eller lösenord");
             inputPassword.value = "";
             errorCode("Wrong username or password. Try again.");
         } else {
-            //logInFail();
-            console.log("Användarnamnet finns inte");
             errorCode("Username doesn´t exist. Try again.")
         }
     });
-
 };
 function logOut() {
     logOutBtn.addEventListener("click", (e) => {
         localStorage.removeItem("loggedInUser");
-        //loginForm.style.display="block";
-        //logoutBtn.style.display="none";
         square.style.display = "none";
         pWelcome.innerText = "";
     })
 }
 function logInUser(username) {
-
     localStorage.setItem("loggedInUser", username);
     pWelcome.innerText = `Välkommen ${username}!`;
     inputUsername.value = "";
     inputPassword.value = "";
     square.style.display = "none";
     errorMessage.innerText="";
-
 }
 
 function anyoneHome() {
@@ -309,5 +267,9 @@ function errorCode(errorCode){
     errormessage.textContent = errorCode;
 };
 
-
+function errorCodeTwo(errorCode){
+    errormessage.style.display="block";
+    errormessage.textContent = errorCode;
+    errormessage.style.color = "green";
+};
 

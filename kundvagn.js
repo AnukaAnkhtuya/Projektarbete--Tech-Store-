@@ -12,13 +12,10 @@ const logInBtn = document.querySelector(".btnLogIn");
 const logOutBtn = document.querySelector(".btnLogOut");
 const pWelcome = document.querySelector(".pWelcome");
 const myOrdersBtn = document.querySelector(".myOrders");
-
 const errormessage = document.querySelector(".errorMessage-text");
 const btnCreateUser = document.querySelector(".btnCreateUser");
 const btnSaveNewUser = document.querySelector(".btnSaveNewUser");
-
 const errorMessage = document.querySelector(".errorMessage-text");
-
 
 function getCart() {
     return JSON.parse(localStorage.getItem('doList')) || [];
@@ -39,7 +36,6 @@ function initSite() {
     anyoneHome();
     initDefaultUsers();
 }
-
 
 function addProductsToWebpage() {
     document.getElementById("itemCounter").innerHTML = getCart().length;
@@ -98,18 +94,14 @@ function addProductsToWebpage() {
         cartItemDiv.appendChild(cartItemTitle);
         cartItemDiv.appendChild(cartItemPrice);
         cartItemDiv.appendChild(deleteButton);
-
         cartContainer.appendChild(cartItemDiv);   
-
     }
     
     let totalPriceContainer = getTotalPrice(totalPrice);
     cartContent.appendChild(totalPriceContainer);
-
     let checkOutDiv = document.createElement("div");
     checkOutDiv.classList = "checkOutDiv";
     cartContent.appendChild(checkOutDiv);
-
     let checkOutButton = document.createElement("button");
     let checkOutButtonText = document.createElement("p");
     checkOutButtonText.classList = "checkOutButtonText"
@@ -120,11 +112,9 @@ function addProductsToWebpage() {
     checkOutButton.onclick = function() {
        controlCheckOut()
     };
-
     if (totalPrice < 1) {
         checkOutButton.style.display = "none";
     }
-
 }
 
 function deleteItem(title) {
@@ -151,15 +141,12 @@ function getTotalPrice (totalPrice) {
         priceContainer.appendChild(text);
         return priceContainer;
     }
-
 }
 
 function controlCheckOut () {
     if (!localStorage.getItem("loggedInUser")) {
         showLoginForm();
         errorCode(" Du måste vara inloggad för att bekräfta din order, vänligen logga in eller skapa ett konto!"); 
-
-        console.log("logga in!");
     } else {
         checkOut();
     }
@@ -173,36 +160,30 @@ function checkOut() {
             let fromdoList = getCart();
 
             if(!localStorage.getItem(loggedInUser)){
-                localStorage.setItem(loggedInUser, JSON.stringify(fromdoList)); //Spara kundvagnen som användarnamn(temp)
+                localStorage.setItem(loggedInUser, JSON.stringify(fromdoList));
             } else {
                 let fromUser = JSON.parse(localStorage.getItem(loggedInUser));
-               fromUser = fromUser.concat(fromdoList); //Lägga till nya varor till historiken
-                localStorage.setItem(loggedInUser, JSON.stringify(fromUser)); //Ladda upp uppdaterad lista med inköpta varor
+               fromUser = fromUser.concat(fromdoList); 
+                localStorage.setItem(loggedInUser, JSON.stringify(fromUser)); 
             }
             localStorage.removeItem("doList");
-            addProductsToWebpage() //Rendera tom varukorg. 
+            addProductsToWebpage()  
         }
     }
    
     cart.splice(0, cart.length);
 }
 
-// === Script for showing login-form ===
 userButton.addEventListener("click", showLoginForm);
 userBtn.addEventListener("click", showLoginForm());
 
-function showLoginForm() {
-    console.log("click");
-    
+function showLoginForm() {    
     errormessage.style.display="none";
 
-    
     if (localStorage.getItem("loggedInUser")) {
         logoutForm();
-        console.log("Visa LogUTForm")
     } else {
         if (square.style.display === "none") {
-            console.log("Visa LoginForm")
             square.style.display = "block";
             logOutBtn.style.display = "none";
             myOrdersBtn.style.display= "none";
@@ -244,11 +225,8 @@ function logoutForm() {
 myOrdersBtn.addEventListener("click", () => {
     window.location.replace("orders.html")});
 
-// == END == Script for login-form == END ==
-
 btnCreateUser.addEventListener("click", createUser);
 
-// == CREATE USER FORM ==
 function createUser(){
     square.style.display = "block";
     inputUsername.style.display = "none";
@@ -314,7 +292,6 @@ function initDefaultUsers() {
     userList = tempUserList;
 };
 
-
 function login() {
     logInBtn.addEventListener("click", function () {
         let obj = userList.find(o => o.userName === inputUsername.value)
@@ -331,7 +308,6 @@ function login() {
             errorCode("Användarnamnet finns inte")
         }
     });
-
 };
 function logOut() {
     logOutBtn.addEventListener("click", (e) => {
@@ -342,14 +318,12 @@ function logOut() {
     })
 }
 function logInUser(username) {
-
     localStorage.setItem("loggedInUser", username);
     pWelcome.innerText = `Välkommen ${username}!`;
     inputUsername.value = "";
     inputPassword.value = "";
     square.style.display = "none";
     errorMessage.innerText="";
-
 }
 
 function anyoneHome() {
@@ -363,7 +337,6 @@ function errorCode(errorCode){
     errormessage.style.display="block";
     errormessage.textContent = errorCode;
     errormessage.style.color = "#ca484c";
-
 };
 
 function errorCodeTwo(errorCode){
