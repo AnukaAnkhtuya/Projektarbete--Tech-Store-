@@ -23,9 +23,13 @@ Genom att klicka på användar-ikonen får användaren fram ett fönster/formul�
 ### Produktlista:
 Vi har utökat produktlistan med (6st) telefoner. 
 ### Varukorgen:
- ”Produktkorten” som presenterar de tillagda produkter i varukorgen var i mockupen i olika storlekar vilket gruppen inte tyckte var så snyggt, därför valde vi att göra alla lika stora.
+ ”Produkt-korten” som presenterar de tillagda produkterna i varukorgen är enligt mockupsen i olika storlekar vilket vi inte tyckte var så snyggt, därför valde vi att göra alla samma storlek.
  ### Bekräfta order:
- För att kunna bekräfta en order måste användaren vara inloggad. Om användaren inte är inloggad visas inloggningsfomuläret samt en text som förklarar att inloggning krävs för att bekräfta ordern, vi ber då användaren att logga in alternativt skapa ett konto. Anledningen till detta är för att ordern ska kunna kopplas till den specifika användaren och på så sätt kunna presentera använderns tidigare ordrar.
+ För att kunna bekräfta en order måste användaren vara inloggad. Om användaren inte är inloggad visas inloggningsfomuläret samt en text som förklarar att inloggning krävs för att bekräfta ordern, vi ber då användaren att logga in alternativt skapa ett konto. Anledningen till detta är för att ordern ska kunna kopplas till den specifika användaren och på så sätt kan vi spara och presentera använderns tidigare ordrar.
+
+**Det finns en färdig användare:** <br>
+Användarnamn: Fredrik <br>
+Lösenord: 12345
 
 
 Länk till gruppens 
