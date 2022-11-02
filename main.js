@@ -59,7 +59,7 @@ function addProductsToWebpage() {
         let itemText = document.createElement("p");
         let itemImg = document.createElement("img");
         itemImg.classList = "itemImage";
-        itemImg.setAttribute("src", "/assets/" + selectedItem.image); 
+        itemImg.setAttribute("src", "./assets/" + selectedItem.image); 
         let itemPrice = document.createElement("h4");
 
         let itemBtn = document.createElement("button");
